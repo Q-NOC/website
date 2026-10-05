@@ -6,6 +6,7 @@
 <title>Q-NOC — student research group, Faculty of Physics UW</title>
 <meta name="description" content="Q-NOC (Quantum Neuromorphic Optical Computing) is a student research group at the Faculty of Physics, University of Warsaw, exploring computation through dynamics, spikes and physical intelligence: reservoir computing, spiking neural networks and neuromorphic hardware.">
 <meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%232454ff' d='M21 4a14 14 0 1 0 0 24 11 11 0 0 1 0-24Z'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Q-NOC — student research group, Faculty of Physics UW">
 <meta property="og:description" content="Exploring computation through dynamics, spikes, and physical intelligence.">
@@ -170,11 +171,21 @@ h3{ font-size: clamp(19px, 2vw, 23px); letter-spacing: -0.012em; line-height:1.2
   color: var(--ink);
 }
 .brand .dot{
-  width:8px; height:8px; border-radius:50%;
+  position:relative;
+  width:9px; height:9px; border-radius:50%;
   background: var(--accent);
+  overflow:hidden;
   animation: breathe 3.2s ease-in-out infinite;
 }
+.brand .dot::after{
+  content:"";
+  position:absolute;
+  top:-3px; right:-4px;
+  width:9px; height:9px; border-radius:50%;
+  background: var(--bg);
+}
 @keyframes breathe{ 0%,100%{ opacity:.55;} 50%{ opacity:1;} }
+footer .brand .dot::after{ background: var(--bg-soft); }
 
 .brand-long{
   font-family: var(--font-body); font-weight:500; font-size: 11px;
@@ -806,7 +817,7 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
 <section class="hero" id="top">
   <div class="wrap">
     <div class="hero-copy">
-      <h1 class="h1"><span>Neuromorphic</span><span>Reservoir</span><span>Computing</span></h1>
+      <h1 class="h1"><span>Quantum</span><span>Neuromorphic</span><span>Optical</span><span>Computing</span></h1>
       <p class="h1-sub">Student research group · Faculty of Physics, University of Warsaw</p>
       <p class="lede">Exploring computation through dynamics, spikes, and physical intelligence.</p>
       <div class="hero-actions">
@@ -1185,7 +1196,10 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
       </div>
     </div>
 
-    <form class="form reveal" id="apply" novalidate>
+    <form class="form reveal" id="apply" novalidate action="https://formsubmit.co/alaskowski3.14@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Q-NOC — new application">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
       <div class="field">
         <label for="f-name">name</label>
         <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
@@ -1210,7 +1224,7 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
         <textarea id="f-msg" name="message" placeholder="A course, a project, a paper that stuck with you."></textarea>
       </div>
       <button class="btn btn--primary" type="submit" style="width:100%">Send application</button>
-      <p class="form-note" id="form-note">This form is not wired up yet. Connect it to your backend, Formspree or a Google&nbsp;Form before launch.</p>
+      <p class="form-note" id="form-note">We'll get back to you by email.</p>
     </form>
   </div>
 </section>
@@ -1398,8 +1412,25 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
   var note = document.getElementById('form-note');
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    note.dataset.state = 'ok';
-    note.textContent = 'Nothing was sent — the form still needs a backend. Hook up the submit handler in the script.';
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    note.dataset.state = 'sending';
+    note.textContent = 'Sending…';
+    fetch('https://formsubmit.co/ajax/alaskowski3.14@gmail.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    }).then(function(r){ if (!r.ok) throw new Error(); return r.json(); })
+      .then(function(){
+        note.dataset.state = 'ok';
+        note.textContent = 'Thanks — your application was sent.';
+        form.reset();
+      })
+      .catch(function(){
+        note.dataset.state = 'error';
+        note.textContent = 'Something went wrong — please email q-noc@fuw.edu.pl directly instead.';
+      })
+      .finally(function(){ btn.disabled = false; });
   });
 
   /* ============================================================
