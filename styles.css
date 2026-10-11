@@ -863,3 +863,77 @@ html[lang="en"] [lang="pl"]{ display:none !important; }
   .nav-links{ background:#fff; }
   .nav-links a.btn{ display:flex; border-radius:999px; }
 }
+
+/* ============================================================
+   Q-NOC LOGO — the logo lives on its own night colour (#05051a).
+   Hero and footer take that colour so the artwork has no visible
+   edge; on white surfaces only the small round badge is used.
+   ============================================================ */
+:root{
+  --night:      #05051a;
+  --night-ink:  #f1f0ff;
+  --night-ink-2:#b4b2d6;
+  --night-ink-3:#807fa6;
+  --night-line: rgba(160,155,255,.18);
+  --violet:     #9d8cff;
+  --sky:        #8ec5ff;
+}
+.brand-mark{
+  flex:0 0 auto; width:34px; height:34px; border-radius:50%;
+  overflow:hidden; background: var(--night);
+}
+.brand-mark img{ width:100%; height:100%; transform: scale(1.75); transform-origin: 50% 30%; }   /* zooms in on the brain so it reads at badge size */
+
+.hero{ background: var(--night); color: var(--night-ink); }
+.hero::after{
+  background: linear-gradient(90deg, rgba(5,5,26,.94) 0%, rgba(5,5,26,.8) 40%, rgba(5,5,26,.35) 100%);
+}
+.hero-grid{
+  display:grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  gap: clamp(24px, 4vw, 56px); align-items:center;
+}
+.hero .tag{ color: var(--violet); }
+.hero .tag::before{ background: var(--violet); }
+.hero .h1{
+  font-size: clamp(34px, 4.3vw, 60px);
+  color: var(--night-ink);
+}
+.hero .h1-sub{
+  background: linear-gradient(90deg, var(--violet), var(--sky));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  display: inline-block;
+}
+.hero p.lede{ color: var(--night-ink-2); }
+.hero .btn{ color: var(--night-ink); border-color: rgba(255,255,255,.28); }
+.hero .btn:hover{ border-color: #fff; }
+.hero .btn--primary{ background: #5b5bf0; border-color:#5b5bf0; color:#fff; }
+.hero .btn--primary:hover{ background:#6f6ff6; border-color:#6f6ff6; }
+.hero .trace{ color: var(--night-ink-3); }
+.hero .trace path{ stroke: rgba(170,165,255,.5); }
+.hero .stage-meta{ color: var(--night-ink-3); }
+.hero .stage-meta b{ color: var(--sky); }
+.hero :focus-visible{ outline-color: var(--sky); }
+
+/* shows the brain emblem only: a 680 × 600 window onto the 1214 × 1080 logo */
+.hero-emblem{
+  position:relative; aspect-ratio: 680 / 600; overflow:hidden;
+  width:100%; max-width: 520px; justify-self:end;
+  -webkit-mask-image: radial-gradient(closest-side, #000 78%, transparent 100%);
+          mask-image: radial-gradient(closest-side, #000 78%, transparent 100%);
+}
+.hero-emblem img{ position:absolute; width:178.5%; height:auto; max-width:none; left:-39.3%; top:-15%; }
+@media (max-width: 900px){
+  .hero::after{ background: rgba(5,5,26,.78); }
+  .hero-grid{ grid-template-columns: minmax(0, 1fr); }
+  .hero-emblem{ order:-1; max-width: 250px; justify-self:center; margin-block: -10px 4px; }
+}
+
+footer{ background: var(--night); border-top-color: var(--night); color: var(--night-ink-2); }
+footer .brand{ color: var(--night-ink); }
+footer .brand-mark{ width:40px; height:40px; box-shadow: 0 0 0 1px var(--night-line); }
+footer .tagline{ color: var(--night-ink-3); }
+.foot-col h4{ color: var(--night-ink-3); }
+.foot-col a{ color: var(--night-ink-2); }
+.foot-col a:hover{ color: var(--sky); }
+.foot-bottom{ border-top-color: var(--night-line); color: var(--night-ink-3); }
+footer :focus-visible{ outline-color: var(--sky); }
