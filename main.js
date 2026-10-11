@@ -15,8 +15,8 @@
   }
   var I18N = {
     pl: {
-      title: 'Q-NOC — studencka grupa badawcza, Wydział Fizyki UW',
-      desc: 'Q-NOC (Quantum Neuromorphic Optical Computing) to studencka grupa badawcza na Wydziale Fizyki Uniwersytetu Warszawskiego. Badamy obliczenia neuromorficzne, reservoir computing i sieci neuronowe oparte na świetle.',
+      title: 'Q-NOC — koło naukowe, Wydział Fizyki UW',
+      desc: 'Q-NOC (Quantum Neuromorphic Optical Computing) to koło naukowe na Wydziale Fizyki Uniwersytetu Warszawskiego. Badamy obliczenia neuromorficzne, reservoir computing i sieci neuronowe oparte na świetle.',
       menuOpen: 'Otwórz menu', menuClose: 'Zamknij menu',
       formIdle: 'Odpowiemy mailowo.',
       formSending: 'Wysyłanie…',
@@ -477,9 +477,9 @@
   function draw(){
     ctx.clearRect(0, 0, W, H);
 
-    // edges — faint, like a technical diagram on paper
+    // edges — faint, in the logo's violet on the dark hero
     ctx.lineWidth = 0.7;
-    ctx.strokeStyle = 'rgba(20, 22, 26, 0.10)';
+    ctx.strokeStyle = 'rgba(150, 140, 255, 0.16)';
     ctx.beginPath();
     for (var e = 0; e < edges.length; e++){
       var a = nodes[edges[e][0]], b = nodes[edges[e][1]];
@@ -496,11 +496,11 @@
       ctx.beginPath();
       ctx.arc(nd.x, nd.y, r, 0, Math.PI * 2);
       if (nd.flash > 0.02){
-        ctx.fillStyle = 'rgba(36, 84, 255, ' + (0.65 + nd.flash * 0.35).toFixed(3) + ')';
+        ctx.fillStyle = 'rgba(140, 190, 255, ' + (0.65 + nd.flash * 0.35).toFixed(3) + ')';
         ctx.shadowBlur = 6 * nd.flash;
-        ctx.shadowColor = 'rgba(36, 84, 255, 0.5)';
+        ctx.shadowColor = 'rgba(120, 150, 255, 0.7)';
       } else {
-        ctx.fillStyle = 'rgba(20, 22, 26, ' + (0.22 + pulse * 0.18).toFixed(3) + ')';
+        ctx.fillStyle = 'rgba(190, 185, 255, ' + (0.26 + pulse * 0.2).toFixed(3) + ')';
         ctx.shadowBlur = 0;
       }
       ctx.fill();
@@ -513,7 +513,7 @@
       var x = A.x + (B.x - A.x) * pl.t, y = A.y + (B.y - A.y) * pl.t;
       // short comet tail
       var tt = Math.max(0, pl.t - 0.16);
-      ctx.strokeStyle = 'rgba(36, 84, 255, 0.4)';
+      ctx.strokeStyle = 'rgba(140, 170, 255, 0.5)';
       ctx.lineWidth = 1.3;
       ctx.beginPath();
       ctx.moveTo(A.x + (B.x - A.x) * tt, A.y + (B.y - A.y) * tt);
@@ -522,9 +522,9 @@
 
       ctx.beginPath();
       ctx.arc(x, y, 2, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(36, 84, 255, 0.9)';
+      ctx.fillStyle = 'rgba(170, 205, 255, 0.95)';
       ctx.shadowBlur = 5;
-      ctx.shadowColor = 'rgba(36, 84, 255, 0.6)';
+      ctx.shadowColor = 'rgba(120, 150, 255, 0.8)';
       ctx.fill();
       ctx.shadowBlur = 0;
     }

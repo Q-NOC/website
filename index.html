@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Q-NOC — studencka grupa badawcza, Wydział Fizyki UW</title>
-<meta name="description" content="Q-NOC (Quantum Neuromorphic Optical Computing) to studencka grupa badawcza na Wydziale Fizyki Uniwersytetu Warszawskiego. Badamy obliczenia neuromorficzne, reservoir computing i sieci neuronowe oparte na świetle.">
+<title>Q-NOC — koło naukowe, Wydział Fizyki UW</title>
+<meta name="description" content="Q-NOC (Quantum Neuromorphic Optical Computing) to koło naukowe na Wydziale Fizyki Uniwersytetu Warszawskiego. Badamy obliczenia neuromorficzne, reservoir computing i sieci neuronowe oparte na świetle.">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%232454ff' d='M21 4a14 14 0 1 0 0 24 11 11 0 0 1 0-24Z'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="obrazy/Logo_QNOC.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Q-NOC — Quantum Neuromorphic Optical Computing">
-<meta property="og:description" content="Studencka grupa badawcza na Wydziale Fizyki UW · Student research group at the Faculty of Physics, University of Warsaw.">
+<meta property="og:description" content="Koło naukowe na Wydziale Fizyki UW · Student research group at the Faculty of Physics, University of Warsaw.">
 <!-- language (PL by default, ?lang=en or the saved choice overrides) and tab mode are set before first paint -->
 <script>(function(d){d.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('qnoc-lang');if(l==='en'||l==='pl')d.lang=l;}catch(e){}})(document.documentElement);</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,14 +31,12 @@
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#start"><span class="dot" aria-hidden="true"></span>Q-NOC<span class="brand-long">Quantum Neuromorphic Optical Computing</span></a>
+    <a class="brand" href="#start"><span class="brand-mark" aria-hidden="true"><img src="obrazy/Logo_QNOC.png" width="407" height="407" alt=""></span>Q-NOC<span class="brand-long">Quantum Neuromorphic Optical Computing</span></a>
     <button class="burger" id="burger" aria-label="Otwórz menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="nav-links">
       <li><a href="#start" aria-current="page"><span lang="pl">Start</span><span lang="en">Home</span></a></li>
-      <li><a href="#research"><span lang="pl">Badania</span><span lang="en">Research</span></a></li>
-      <li><a href="#how"><span lang="pl">Jak to działa</span><span lang="en">How it works</span></a></li>
       <li><a href="#lab"><span lang="pl">Laboratorium</span><span lang="en">Laboratory</span></a></li>
       <li><a href="#people"><span lang="pl">Ludzie</span><span lang="en">People</span></a></li>
       <li><a href="#news"><span lang="pl">Aktualności</span><span lang="en">News</span></a></li>
@@ -62,12 +60,12 @@
 
 <section class="hero">
   <div class="hero-bg"><canvas id="reservoir" aria-hidden="true"></canvas></div>
-  <div class="wrap">
+  <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="tag">Q-NOC</p>
       <h1 class="h1"><span class="line">Quantum Neuromorphic</span> <span class="line">Optical Computing</span></h1>
       <p class="h1-sub">
-        <span lang="pl">Studencka grupa badawcza · Wydział Fizyki Uniwersytetu Warszawskiego</span>
+        <span lang="pl">Koło naukowe · Wydział Fizyki Uniwersytetu Warszawskiego</span>
         <span lang="en">Student research group · Faculty of Physics, University of Warsaw</span>
       </p>
       <p class="lede">
@@ -75,8 +73,8 @@
         <span lang="en">We study computation carried out by physics itself: dynamics, spikes and light instead of transistors.</span>
       </p>
       <div class="hero-actions">
-        <a class="btn btn--primary" href="#research"><span lang="pl">Poznaj nasze badania</span><span lang="en">Explore our research</span></a>
-        <a class="btn" href="#join"><span lang="pl">Dołącz do grupy</span><span lang="en">Join the group</span></a>
+        <a class="btn btn--primary" href="#how"><span lang="pl">Zobacz, jak to działa</span><span lang="en">See how it works</span></a>
+        <a class="btn" href="#join"><span lang="pl">Dołącz do koła</span><span lang="en">Join the group</span></a>
       </div>
       <div class="trace" aria-hidden="true">
         <span lang="pl">ciąg&nbsp;impulsów</span><span lang="en">spike&nbsp;train</span>
@@ -86,6 +84,8 @@
         <span>t →</span>
       </div>
     </div>
+    <!-- the emblem is the top part of the full logo; its background is the hero colour, so it has no visible edge -->
+    <div class="hero-emblem"><img src="obrazy/Logo-QNOC3.png" width="1214" height="1080" alt="Logo Q-NOC"></div>
   </div>
   <p class="stage-meta" aria-hidden="true">
     <span lang="pl">rezerwuar · <b data-meta="n">—</b> węzłów · <b data-meta="k">—</b> połączeń · rzadka topologia rekurencyjna</span>
@@ -101,7 +101,7 @@
       <p class="tag"><span lang="pl">o nas</span><span lang="en">about</span></p>
       <h2><span lang="pl">Czym jest Q-NOC?</span><span lang="en">What is Q-NOC?</span></h2>
       <p class="lede">
-        <span lang="pl">Q-NOC to studencka grupa badawcza na Wydziale Fizyki Uniwersytetu Warszawskiego. Zajmujemy się niekonwencjonalnymi sposobami liczenia, inspirowanymi biologicznymi układami nerwowymi i procesami dynamicznymi — ze szczególnym naciskiem na układy optyczne, rozwijane w <a href="#lab">Laboratorium Polarytonowym</a>.</span>
+        <span lang="pl">Q-NOC to koło naukowe na Wydziale Fizyki Uniwersytetu Warszawskiego. Zajmujemy się niekonwencjonalnymi sposobami liczenia, inspirowanymi biologicznymi układami nerwowymi i procesami dynamicznymi — ze szczególnym naciskiem na układy optyczne, rozwijane w <a href="#lab">Laboratorium Polarytonowym</a>.</span>
         <span lang="en">Q-NOC is a student research group at the Faculty of Physics, University of Warsaw. We explore unconventional approaches to computation inspired by biological neural systems and dynamical processes — with a particular focus on optical systems developed in the <a href="#lab">Polariton Laboratory</a>.</span>
       </p>
     </div>
@@ -147,158 +147,9 @@
   </div>
 </section>
 
-</div>
-
-<!-- ==================================================================
-     TAB: RESEARCH
-     ================================================================== -->
-<div class="panel" id="research">
-
-<section class="band">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="tag"><span lang="pl">badania</span><span lang="en">research</span></p>
-      <h2><span lang="pl">Kierunki badań</span><span lang="en">Research</span></h2>
-      <p class="lede">
-        <span lang="pl">Osiem kierunków, wzdłuż których pracujemy. Celowo się przenikają — większość tego, co budujemy, leży pomiędzy dwoma z nich.</span>
-        <span lang="en">Eight directions we work along. They overlap on purpose — most of what we build sits between two of them.</span>
-      </p>
-    </div>
-
-    <div class="bay reveal">
-      <article class="node-card" tabindex="0">
-        <span class="idx">01</span>
-        <h3>Reservoir Computing</h3>
-        <p><span lang="pl">Uczymy wyłącznie warstwę odczytu nad bogatym, nietrenowanym układem rekurencyjnym.</span><span lang="en">Training only a readout on top of a rich, untrained recurrent substrate.</span></p>
-      </article>
-      <article class="node-card" tabindex="0">
-        <span class="idx">02</span>
-        <h3><span lang="pl">Impulsowe sieci neuronowe</span><span lang="en">Spiking Neural Networks</span></h3>
-        <p><span lang="pl">Sieci, które niosą informację w czasie impulsów, a nie w ciągłych aktywacjach.</span><span lang="en">Networks that carry information in spike timing rather than continuous activations.</span></p>
-      </article>
-      <article class="node-card" tabindex="0">
-        <span class="idx">03</span>
-        <h3><span lang="pl">Sprzęt neuromorficzny</span><span lang="en">Neuromorphic Hardware</span></h3>
-        <p><span lang="pl">Układy, w których pamięć i obliczenia dzielą to samo fizyczne miejsce.</span><span lang="en">Chips and circuits where memory and computation share the same physical place.</span></p>
-      </article>
-      <article class="node-card" tabindex="0">
-        <span class="idx">04</span>
-        <h3>Edge AI</h3>
-        <p><span lang="pl">Wnioskowanie przy twardych ograniczeniach mocy, opóźnień i pamięci, z dala od centrum danych.</span><span lang="en">Inference under hard power, latency and memory budgets, away from the data centre.</span></p>
-      </article>
-      <article class="node-card" tabindex="0">
-        <span class="idx">05</span>
-        <h3><span lang="pl">Układy dynamiczne</span><span lang="en">Dynamical Systems</span></h3>
-        <p><span lang="pl">Atraktory, bifurkacje i krawędź chaosu jako sposób patrzenia na to, co sieć potrafi policzyć.</span><span lang="en">Attractors, bifurcations and the edge of chaos as a lens on what a network can compute.</span></p>
-      </article>
-      <article class="node-card" tabindex="0">
-        <span class="idx">06</span>
-        <h3><span lang="pl">Obliczenia inspirowane mózgiem</span><span lang="en">Brain-Inspired Computing</span></h3>
-        <p><span lang="pl">Zasady zapożyczone z neuronauki — plastyczność, rzadkość, lokalność — a nie tylko jej słownictwo.</span><span lang="en">Borrowing principles from neuroscience — plasticity, sparsity, locality — not just its vocabulary.</span></p>
-      </article>
-      <article class="node-card" tabindex="0">
-        <span class="idx">07</span>
-        <h3><span lang="pl">Obliczenia analogowe i mieszane</span><span lang="en">Analog / Mixed-Signal Computing</span></h3>
-        <p><span lang="pl">Arytmetykę wykonuje fizyka, a logika cyfrowa pojawia się tylko tam, gdzie warto wydać na nią energię.</span><span lang="en">Letting physics do the arithmetic, with digital logic only where it earns its power budget.</span></p>
-      </article>
-      <article class="node-card" tabindex="0">
-        <span class="idx">08</span>
-        <h3><span lang="pl">Przetwarzanie zdarzeniowe</span><span lang="en">Event-Based Processing</span></h3>
-        <p><span lang="pl">Czujniki i potoki danych, które generują dane tylko wtedy, gdy coś rzeczywiście się zmienia.</span><span lang="en">Sensors and pipelines that produce data only when something actually changes.</span></p>
-      </article>
-    </div>
-  </div>
-</section>
-
 <hr class="rule">
 
-<section class="band" id="projects">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="tag"><span lang="pl">projekty</span><span lang="en">projects</span></p>
-      <h2><span lang="pl">Projekty</span><span lang="en">Projects</span></h2>
-      <p class="lede">
-        <span lang="pl">Prace w toku. Repozytoria, opisy i wyniki będą tu dodawane w miarę postępów.</span>
-        <span lang="en">Work in progress. Repositories, write-ups and results get linked here as they land.</span>
-      </p>
-    </div>
-
-    <div class="projects">
-      <article class="project reveal" data-delay="0">
-        <div class="raster" data-raster="1" aria-hidden="true"></div>
-        <div class="project-body">
-          <div class="project-top">
-            <h3>Spiking Reservoir</h3>
-            <span class="status" data-s="active"><span lang="pl">w toku</span><span lang="en">active</span></span>
-          </div>
-          <p><span lang="pl">Symulacje rekurencyjnych rezerwuarów zbudowanych z neuronów impulsowych.</span><span lang="en">Simulation of recurrent spiking neural reservoirs.</span></p>
-          <ul class="tech"><li>Python</li><li>Brian2</li><li>NumPy</li></ul>
-          <div class="project-foot">
-            <a class="link-mono" href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub ↗</a>
-            <span class="link-mono" style="color:var(--ink-3)"><span lang="pl">opis wkrótce</span><span lang="en">write-up soon</span></span>
-          </div>
-        </div>
-      </article>
-
-      <article class="project reveal" data-delay="1">
-        <div class="raster" data-raster="2" aria-hidden="true"></div>
-        <div class="project-body">
-          <div class="project-top">
-            <h3>Neuromorphic Edge</h3>
-            <span class="status" data-s="active"><span lang="pl">w toku</span><span lang="en">active</span></span>
-          </div>
-          <p><span lang="pl">Energooszczędne wnioskowanie na architekturach neuromorficznych.</span><span lang="en">Exploring low-power inference on neuromorphic architectures.</span></p>
-          <ul class="tech"><li>Lava</li><li>C</li><li>FPGA</li></ul>
-          <div class="project-foot">
-            <a class="link-mono" href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub ↗</a>
-            <span class="link-mono" style="color:var(--ink-3)"><span lang="pl">opis wkrótce</span><span lang="en">write-up soon</span></span>
-          </div>
-        </div>
-      </article>
-
-      <article class="project reveal" data-delay="2">
-        <div class="raster" data-raster="3" aria-hidden="true"></div>
-        <div class="project-body">
-          <div class="project-top">
-            <h3>Physical Reservoir</h3>
-            <span class="status" data-s="planned"><span lang="pl">planowany</span><span lang="en">planned</span></span>
-          </div>
-          <p><span lang="pl">Eksperymenty z układami fizycznymi w roli rezerwuarów obliczeniowych.</span><span lang="en">Experiments with physical systems as computational reservoirs.</span></p>
-          <ul class="tech"><li><span lang="pl">Elektronika analogowa</span><span lang="en">Analog electronics</span></li><li>DAQ</li><li>Python</li></ul>
-          <div class="project-foot">
-            <a class="link-mono" href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub ↗</a>
-            <span class="link-mono" style="color:var(--ink-3)"><span lang="pl">opis wkrótce</span><span lang="en">write-up soon</span></span>
-          </div>
-        </div>
-      </article>
-
-      <article class="project reveal" data-delay="3">
-        <div class="raster" data-raster="4" aria-hidden="true"></div>
-        <div class="project-body">
-          <div class="project-top">
-            <h3>Event-Driven AI</h3>
-            <span class="status" data-s="planned"><span lang="pl">planowany</span><span lang="en">planned</span></span>
-          </div>
-          <p><span lang="pl">Czasowe i zdarzeniowe podejścia do uczenia maszynowego.</span><span lang="en">Temporal and event-based approaches to machine learning.</span></p>
-          <ul class="tech"><li>PyTorch</li><li>snnTorch</li><li><span lang="pl">dane DVS</span><span lang="en">DVS data</span></li></ul>
-          <div class="project-foot">
-            <a class="link-mono" href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub ↗</a>
-            <span class="link-mono" style="color:var(--ink-3)"><span lang="pl">opis wkrótce</span><span lang="en">write-up soon</span></span>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-</div>
-
-<!-- ==================================================================
-     TAB: HOW IT WORKS
-     ================================================================== -->
-<div class="panel" id="how">
-
-<section class="band">
+<section class="band" id="how">
   <div class="wrap">
     <div class="section-head reveal">
       <p class="tag"><span lang="pl">jak to działa</span><span lang="en">how it works</span></p>
@@ -441,6 +292,154 @@
 </div>
 
 <!-- ==================================================================
+     TAB: RESEARCH — switched off for now.
+     To bring it back: remove the comment markers around the block below and
+     re-add <li><a href="#research">…</a></li> to the nav.
+     ================================================================== -->
+<!--
+<div class="panel" id="research">
+
+<section class="band">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="tag"><span lang="pl">badania</span><span lang="en">research</span></p>
+      <h2><span lang="pl">Kierunki badań</span><span lang="en">Research</span></h2>
+      <p class="lede">
+        <span lang="pl">Osiem kierunków, wzdłuż których pracujemy. Celowo się przenikają — większość tego, co budujemy, leży pomiędzy dwoma z nich.</span>
+        <span lang="en">Eight directions we work along. They overlap on purpose — most of what we build sits between two of them.</span>
+      </p>
+    </div>
+
+    <div class="bay reveal">
+      <article class="node-card" tabindex="0">
+        <span class="idx">01</span>
+        <h3>Reservoir Computing</h3>
+        <p><span lang="pl">Uczymy wyłącznie warstwę odczytu nad bogatym, nietrenowanym układem rekurencyjnym.</span><span lang="en">Training only a readout on top of a rich, untrained recurrent substrate.</span></p>
+      </article>
+      <article class="node-card" tabindex="0">
+        <span class="idx">02</span>
+        <h3><span lang="pl">Impulsowe sieci neuronowe</span><span lang="en">Spiking Neural Networks</span></h3>
+        <p><span lang="pl">Sieci, które niosą informację w czasie impulsów, a nie w ciągłych aktywacjach.</span><span lang="en">Networks that carry information in spike timing rather than continuous activations.</span></p>
+      </article>
+      <article class="node-card" tabindex="0">
+        <span class="idx">03</span>
+        <h3><span lang="pl">Sprzęt neuromorficzny</span><span lang="en">Neuromorphic Hardware</span></h3>
+        <p><span lang="pl">Układy, w których pamięć i obliczenia dzielą to samo fizyczne miejsce.</span><span lang="en">Chips and circuits where memory and computation share the same physical place.</span></p>
+      </article>
+      <article class="node-card" tabindex="0">
+        <span class="idx">04</span>
+        <h3>Edge AI</h3>
+        <p><span lang="pl">Wnioskowanie przy twardych ograniczeniach mocy, opóźnień i pamięci, z dala od centrum danych.</span><span lang="en">Inference under hard power, latency and memory budgets, away from the data centre.</span></p>
+      </article>
+      <article class="node-card" tabindex="0">
+        <span class="idx">05</span>
+        <h3><span lang="pl">Układy dynamiczne</span><span lang="en">Dynamical Systems</span></h3>
+        <p><span lang="pl">Atraktory, bifurkacje i krawędź chaosu jako sposób patrzenia na to, co sieć potrafi policzyć.</span><span lang="en">Attractors, bifurcations and the edge of chaos as a lens on what a network can compute.</span></p>
+      </article>
+      <article class="node-card" tabindex="0">
+        <span class="idx">06</span>
+        <h3><span lang="pl">Obliczenia inspirowane mózgiem</span><span lang="en">Brain-Inspired Computing</span></h3>
+        <p><span lang="pl">Zasady zapożyczone z neuronauki — plastyczność, rzadkość, lokalność — a nie tylko jej słownictwo.</span><span lang="en">Borrowing principles from neuroscience — plasticity, sparsity, locality — not just its vocabulary.</span></p>
+      </article>
+      <article class="node-card" tabindex="0">
+        <span class="idx">07</span>
+        <h3><span lang="pl">Obliczenia analogowe i mieszane</span><span lang="en">Analog / Mixed-Signal Computing</span></h3>
+        <p><span lang="pl">Arytmetykę wykonuje fizyka, a logika cyfrowa pojawia się tylko tam, gdzie warto wydać na nią energię.</span><span lang="en">Letting physics do the arithmetic, with digital logic only where it earns its power budget.</span></p>
+      </article>
+      <article class="node-card" tabindex="0">
+        <span class="idx">08</span>
+        <h3><span lang="pl">Przetwarzanie zdarzeniowe</span><span lang="en">Event-Based Processing</span></h3>
+        <p><span lang="pl">Czujniki i potoki danych, które generują dane tylko wtedy, gdy coś rzeczywiście się zmienia.</span><span lang="en">Sensors and pipelines that produce data only when something actually changes.</span></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="band" id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="tag"><span lang="pl">projekty</span><span lang="en">projects</span></p>
+      <h2><span lang="pl">Projekty</span><span lang="en">Projects</span></h2>
+      <p class="lede">
+        <span lang="pl">Prace w toku. Repozytoria, opisy i wyniki będą tu dodawane w miarę postępów.</span>
+        <span lang="en">Work in progress. Repositories, write-ups and results get linked here as they land.</span>
+      </p>
+    </div>
+
+    <div class="projects">
+      <article class="project reveal" data-delay="0">
+        <div class="raster" data-raster="1" aria-hidden="true"></div>
+        <div class="project-body">
+          <div class="project-top">
+            <h3>Spiking Reservoir</h3>
+            <span class="status" data-s="active"><span lang="pl">w toku</span><span lang="en">active</span></span>
+          </div>
+          <p><span lang="pl">Symulacje rekurencyjnych rezerwuarów zbudowanych z neuronów impulsowych.</span><span lang="en">Simulation of recurrent spiking neural reservoirs.</span></p>
+          <ul class="tech"><li>Python</li><li>Brian2</li><li>NumPy</li></ul>
+          <div class="project-foot">
+            <a class="link-mono" href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub ↗</a>
+            <span class="link-mono" style="color:var(--ink-3)"><span lang="pl">opis wkrótce</span><span lang="en">write-up soon</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal" data-delay="1">
+        <div class="raster" data-raster="2" aria-hidden="true"></div>
+        <div class="project-body">
+          <div class="project-top">
+            <h3>Neuromorphic Edge</h3>
+            <span class="status" data-s="active"><span lang="pl">w toku</span><span lang="en">active</span></span>
+          </div>
+          <p><span lang="pl">Energooszczędne wnioskowanie na architekturach neuromorficznych.</span><span lang="en">Exploring low-power inference on neuromorphic architectures.</span></p>
+          <ul class="tech"><li>Lava</li><li>C</li><li>FPGA</li></ul>
+          <div class="project-foot">
+            <a class="link-mono" href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub ↗</a>
+            <span class="link-mono" style="color:var(--ink-3)"><span lang="pl">opis wkrótce</span><span lang="en">write-up soon</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal" data-delay="2">
+        <div class="raster" data-raster="3" aria-hidden="true"></div>
+        <div class="project-body">
+          <div class="project-top">
+            <h3>Physical Reservoir</h3>
+            <span class="status" data-s="planned"><span lang="pl">planowany</span><span lang="en">planned</span></span>
+          </div>
+          <p><span lang="pl">Eksperymenty z układami fizycznymi w roli rezerwuarów obliczeniowych.</span><span lang="en">Experiments with physical systems as computational reservoirs.</span></p>
+          <ul class="tech"><li><span lang="pl">Elektronika analogowa</span><span lang="en">Analog electronics</span></li><li>DAQ</li><li>Python</li></ul>
+          <div class="project-foot">
+            <a class="link-mono" href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub ↗</a>
+            <span class="link-mono" style="color:var(--ink-3)"><span lang="pl">opis wkrótce</span><span lang="en">write-up soon</span></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal" data-delay="3">
+        <div class="raster" data-raster="4" aria-hidden="true"></div>
+        <div class="project-body">
+          <div class="project-top">
+            <h3>Event-Driven AI</h3>
+            <span class="status" data-s="planned"><span lang="pl">planowany</span><span lang="en">planned</span></span>
+          </div>
+          <p><span lang="pl">Czasowe i zdarzeniowe podejścia do uczenia maszynowego.</span><span lang="en">Temporal and event-based approaches to machine learning.</span></p>
+          <ul class="tech"><li>PyTorch</li><li>snnTorch</li><li><span lang="pl">dane DVS</span><span lang="en">DVS data</span></li></ul>
+          <div class="project-foot">
+            <a class="link-mono" href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub ↗</a>
+            <span class="link-mono" style="color:var(--ink-3)"><span lang="pl">opis wkrótce</span><span lang="en">write-up soon</span></span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+</div>
+-->
+
+<!-- ==================================================================
      TAB: LABORATORY
      ================================================================== -->
 <div class="panel" id="lab">
@@ -467,7 +466,7 @@
           <span lang="en">The focus is on <strong>exciton-polaritons</strong> in optical microcavities and their non-equilibrium Bose-Einstein condensates — in semiconductors, perovskites and two-dimensional materials. The second pillar is liquid-crystal-filled microcavities, in which photons behave like particles with mass and spin; these results appeared in <a href="https://doi.org/10.1126/science.aay4182" target="_blank" rel="noopener"><em>Science</em></a> in 2019.</span>
         </p>
         <p>
-          <span lang="pl">Dla naszej grupy najważniejszy jest trzeci nurt: <strong>neuromorficzne obliczenia na polarytonach</strong>. Silna nieliniowość polarytonów pozwala budować optyczne neurony i całe sieci neuronowe, które przetwarzają impulsy światła w skali pikosekund — od bramek logicznych i klasyfikacji obrazów po neurony impulsowe i sieci działające w temperaturze pokojowej.</span>
+          <span lang="pl">Dla naszego koła najważniejszy jest trzeci nurt: <strong>neuromorficzne obliczenia na polarytonach</strong>. Silna nieliniowość polarytonów pozwala budować optyczne neurony i całe sieci neuronowe, które przetwarzają impulsy światła w skali pikosekund — od bramek logicznych i klasyfikacji obrazów po neurony impulsowe i sieci działające w temperaturze pokojowej.</span>
           <span lang="en">For our group the third strand matters most: <strong>neuromorphic computing with polaritons</strong>. The strong polariton nonlinearity makes it possible to build optical neurons and whole neural networks that process light pulses on picosecond timescales — from logic gates and image classification to spiking neurons and networks operating at room temperature.</span>
         </p>
       </div>
@@ -607,7 +606,7 @@
           </p>
         </div>
         <div class="supervisor-links">
-          <a class="link-mono" href="#lab"><span lang="pl">Laboratorium</span><span lang="en">Laboratory</span> &rarr;</a>
+          <a class="link-mono" href="https://scholar.google.pl/citations?user=F9NmbDMAAAAJ&amp;hl=en" rel="noopener" target="_blank">Google Scholar &#8599;</a>
           <a class="link-mono" href="https://pl.linkedin.com/in/barbara-pietka-6931096" rel="noopener" target="_blank">LinkedIn &#8599;</a>
         </div>
       </article>
@@ -656,7 +655,7 @@
       <article class="person">
         <div class="avatar" aria-hidden="true">GJ</div>
         <h3>Grzegorz J&#281;drzejowski</h3>
-        <p class="role"><span lang="pl">zespół Q-NOC</span><span lang="en">Q-NOC team</span></p>
+        <p class="role"><span lang="pl">studia magisterskie &middot; II rok</span><span lang="en">MSc student &middot; 2nd year</span></p>
         <div class="socials">
           <a href="https://www.facebook.com/g.jedrzejowsk" target="_blank" rel="noopener" aria-label="Grzegorz Jędrzejowski — Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.5V21h3Z"/></svg></a>
         </div>
@@ -681,7 +680,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <p class="tag"><span lang="pl">aktualności i wydarzenia</span><span lang="en">news &amp; events</span></p>
-      <h2><span lang="pl">Co słychać w grupie</span><span lang="en">Latest from the group</span></h2>
+      <h2><span lang="pl">Co słychać w kole</span><span lang="en">Latest from the group</span></h2>
     </div>
 
     <!-- placeholders: add href="…" to an entry once it has somewhere to point -->
@@ -718,7 +717,7 @@
         <span class="kind"><span lang="pl">konferencja</span><span lang="en">conference</span></span>
         <div class="txt">
           <h3><span lang="pl">Konferencja — do uzupełnienia</span><span lang="en">Conference — placeholder</span></h3>
-          <p><span lang="pl">Gdzie członkowie grupy występują lub biorą udział.</span><span lang="en">Where members are presenting or attending.</span></p>
+          <p><span lang="pl">Gdzie członkowie koła występują lub biorą udział.</span><span lang="en">Where members are presenting or attending.</span></p>
         </div>
         <span class="go" aria-hidden="true">→</span>
       </a></li>
@@ -791,19 +790,17 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="brand-block">
-        <a class="brand" href="#start"><span class="dot" aria-hidden="true"></span>Q-NOC</a>
+        <a class="brand" href="#start"><span class="brand-mark" aria-hidden="true"><img src="obrazy/Logo_QNOC.png" width="407" height="407" alt=""></span>Q-NOC</a>
         <p class="tagline">
-          <span lang="pl">Quantum Neuromorphic Optical Computing — studencka grupa badawcza na Wydziale Fizyki Uniwersytetu Warszawskiego.</span>
+          <span lang="pl">Quantum Neuromorphic Optical Computing — koło naukowe na Wydziale Fizyki Uniwersytetu Warszawskiego.</span>
           <span lang="en">Quantum Neuromorphic Optical Computing — student research group at the Faculty of Physics, University of Warsaw.</span>
         </p>
       </div>
       <div class="foot-col">
-        <h4><span lang="pl">grupa</span><span lang="en">the group</span></h4>
+        <h4><span lang="pl">koło</span><span lang="en">the group</span></h4>
         <ul>
-          <li><a href="#research"><span lang="pl">Badania</span><span lang="en">Research</span></a></li>
           <li><a href="#how"><span lang="pl">Jak to działa</span><span lang="en">How it works</span></a></li>
           <li><a href="#demo"><span lang="pl">Zagraj z rezerwuarem</span><span lang="en">Play the reservoir</span></a></li>
-          <li><a href="#projects"><span lang="pl">Projekty</span><span lang="en">Projects</span></a></li>
           <li><a href="#lab"><span lang="pl">Laboratorium</span><span lang="en">Laboratory</span></a></li>
           <li><a href="#people"><span lang="pl">Ludzie</span><span lang="en">People</span></a></li>
         </ul>
