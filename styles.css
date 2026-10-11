@@ -905,3 +905,14 @@ footer .brand-mark{ height: 44px; }
   border-radius: 999px; padding: 4px 10px;
 }
 .node-card p + p{ margin-top: 12px; }
+
+/* Q-NOC lockup (brain mark + name) in the institution bar */
+.topbar .logo-qnoc{
+  display:flex; align-items:center; gap: 12px; text-decoration:none;
+  font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: -.02em; color: var(--ink);
+}
+.topbar .logo-qnoc img{ height: 56px; }
+@media (max-width: 600px){
+  .topbar .logo-qnoc{ gap: 7px; font-size: 17px; }
+  .topbar .logo-qnoc img{ height: 32px; }
+}
