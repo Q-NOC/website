@@ -1,854 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Q-NOC — student research group, Faculty of Physics UW</title>
-<meta name="description" content="Q-NOC (Quantum Neuromorphic Optical Computing) is a student research group at the Faculty of Physics, University of Warsaw, exploring computation through dynamics, spikes and physical intelligence: reservoir computing, spiking neural networks and neuromorphic hardware.">
+<title>Q-NOC — studencka grupa badawcza, Wydział Fizyki UW</title>
+<meta name="description" content="Q-NOC (Quantum Neuromorphic Optical Computing) to studencka grupa badawcza na Wydziale Fizyki Uniwersytetu Warszawskiego. Badamy obliczenia neuromorficzne, reservoir computing i sieci neuronowe oparte na świetle.">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%232454ff' d='M21 4a14 14 0 1 0 0 24 11 11 0 0 1 0-24Z'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Q-NOC — student research group, Faculty of Physics UW">
-<meta property="og:description" content="Exploring computation through dynamics, spikes, and physical intelligence.">
+<meta property="og:title" content="Q-NOC — Quantum Neuromorphic Optical Computing">
+<meta property="og:description" content="Studencka grupa badawcza na Wydziale Fizyki UW · Student research group at the Faculty of Physics, University of Warsaw.">
+<!-- language (PL by default, ?lang=en or the saved choice overrides) and tab mode are set before first paint -->
+<script>(function(d){d.classList.add('js');try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('qnoc-lang');if(l==='en'||l==='pl')d.lang=l;}catch(e){}})(document.documentElement);</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-/* ============================================================
-   TOKENS — light, editorial, one accent colour
-   ============================================================ */
-:root{
-  color-scheme: light;
-
-  --bg:            #ffffff;
-  --bg-soft:       #f6f6f4;
-  --panel:         #ffffff;
-  --line:          #e2e3e0;
-  --line-strong:   #c7c9c5;
-
-  --ink:           #14161a;
-  --ink-2:         #52565c;
-  --ink-3:         #888c92;
-
-  --accent:        #2454ff;
-  --accent-deep:   #173ecc;
-  --accent-pale:   #dbe6ff;
-  --accent-soft:   rgba(36,84,255,.08);
-  --accent-line:   rgba(36,84,255,.35);
-
-  --amber:         #a15c00;
-  --amber-soft:    #fbeed9;
-  --amber-line:    rgba(191,132,15,.35);
-
-  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-body:    "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-
-  --gutter: clamp(20px, 5vw, 72px);
-  --maxw: 1240px;
-  --nav-h: 64px;
-
-  --r-sm: 4px;
-  --r-md: 8px;
-  --r-lg: 12px;
-
-  box-sizing: border-box;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-*,*::before,*::after{ box-sizing: border-box; }
-
-html{
-  scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--nav-h) + 24px + env(safe-area-inset-top, 0px));
-  -webkit-text-size-adjust: 100%;
-}
-body{
-  margin:0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-img{ max-width:100%; display:block; }
-a{ color: inherit; }
-
-::selection{ background: var(--accent-pale); color: var(--ink); }
-
-:focus-visible{
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 3px;
-}
-
-.skip{
-  position:absolute; left:-9999px; top:0; z-index:200;
-  background: var(--accent); color:#fff; padding:10px 16px;
-  font-family: var(--font-body); font-weight:600; font-size:13px; border-radius: 0 0 var(--r-sm) 0;
-}
-.skip:focus{ left:0; }
-
-/* ============================================================
-   LAYOUT PRIMITIVES
-   ============================================================ */
-.wrap{
-  width:100%;
-  max-width: var(--maxw);
-  margin-inline:auto;
-  padding-inline: var(--gutter);
-  position: relative;
-  z-index: 1;
-}
-section{ position: relative; }
-.band{ padding-block: clamp(64px, 9vw, 118px); }
-.band--tight{ padding-block: clamp(50px, 6.5vw, 84px); }
-
-.rule{
-  height:1px; width:100%;
-  background: var(--line);
-  border:0; margin:0;
-}
-
-/* section heading block: a small uppercase channel-tag + display title */
-.tag{
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 12.5px;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  color: var(--accent);
-  display:inline-flex; align-items:center; gap:8px;
-  margin-bottom: 14px;
-}
-.tag::before{
-  content:""; width:18px; height:2px; background: var(--accent);
-}
-h1,h2,h3,h4{
-  font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.08;
-  margin: 0;
-  text-wrap: balance;
-  color: var(--ink);
-}
-h2{ font-size: clamp(30px, 4.4vw, 54px); letter-spacing: -0.025em; }
-h3{ font-size: clamp(19px, 2vw, 23px); letter-spacing: -0.012em; line-height:1.28; }
-.lede{
-  color: var(--ink-2);
-  font-size: clamp(16px, 1.35vw, 18px);
-  max-width: 62ch;
-  margin: 20px 0 0;
-}
-.section-head{ margin-bottom: clamp(38px, 5vw, 62px); }
-
-/* ============================================================
-   NAV
-   ============================================================ */
-.nav{
-  position: sticky;
-  top: env(safe-area-inset-top, 0px);
-  z-index: 60;
-  height: var(--nav-h);
-  display:flex; align-items:center;
-  background: rgba(255,255,255,.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid transparent;
-  transition: border-color .3s ease;
-}
-.nav[data-stuck="true"]{ border-bottom-color: var(--line); }
-.nav .wrap{ display:flex; align-items:center; gap: 28px; }
-
-.brand{
-  display:flex; align-items:center; gap:10px;
-  text-decoration:none; font-family: var(--font-display);
-  font-weight: 700; letter-spacing:-.02em; font-size:17px; white-space:nowrap;
-  color: var(--ink);
-}
-.brand .dot{
-  position:relative;
-  width:9px; height:9px; border-radius:50%;
-  background: var(--accent);
-  overflow:hidden;
-  animation: breathe 3.2s ease-in-out infinite;
-}
-.brand .dot::after{
-  content:"";
-  position:absolute;
-  top:-3px; right:-4px;
-  width:9px; height:9px; border-radius:50%;
-  background: var(--bg);
-}
-@keyframes breathe{ 0%,100%{ opacity:.55;} 50%{ opacity:1;} }
-footer .brand .dot::after{ background: var(--bg-soft); }
-
-.brand-long{
-  font-family: var(--font-body); font-weight:500; font-size: 11px;
-  color: var(--ink-3); letter-spacing:.02em; padding-left:10px; margin-left:2px;
-  border-left:1px solid var(--line);
-}
-@media (max-width: 1240px){ .brand-long{ display:none; } }
-
-.nav-links{
-  display:flex; align-items:center; gap: 4px;
-  margin-left:auto; list-style:none; padding:0;
-}
-.nav-links a{
-  display:block; padding: 7px 11px;
-  font-size: 13.5px; color: var(--ink-2); text-decoration:none;
-  border-radius: var(--r-sm);
-  transition: color .2s ease, background .2s ease;
-}
-.nav-links a:hover{ color: var(--ink); background: var(--bg-soft); }
-.nav-links a[aria-current="true"]{ color: var(--accent); }
-
-.btn{
-  --btn-bg: transparent;
-  display:inline-flex; align-items:center; justify-content:center; gap:10px;
-  padding: 12px 22px;
-  font-family: var(--font-body); font-weight:600; font-size:14.5px;
-  text-decoration:none; cursor:pointer;
-  border-radius: 999px;
-  border:1px solid var(--line-strong);
-  background: var(--btn-bg);
-  color: var(--ink);
-  transition: border-color .2s ease, background .2s ease, color .2s ease, transform .18s ease;
-}
-.btn:hover{ border-color: var(--ink); transform: translateY(-1px); }
-.btn--primary{
-  border-color: var(--accent);
-  background: var(--accent);
-  color:#fff;
-}
-.btn--primary:hover{ background: var(--accent-deep); border-color: var(--accent-deep); color:#fff; }
-.btn--nav{ padding: 9px 17px; font-size:13.5px; }
-
-.burger{
-  display:none;
-  margin-left:auto;
-  width:40px; height:36px; border-radius: var(--r-sm);
-  border:1px solid var(--line); background:transparent; cursor:pointer;
-  align-items:center; justify-content:center; gap:4px; flex-direction:column;
-}
-.burger span{ display:block; width:16px; height:1.5px; background: var(--ink-2); transition: transform .25s ease, opacity .2s ease; }
-.nav[data-open="true"] .burger span:nth-child(1){ transform: translateY(5.5px) rotate(45deg); }
-.nav[data-open="true"] .burger span:nth-child(2){ opacity:0; }
-.nav[data-open="true"] .burger span:nth-child(3){ transform: translateY(-5.5px) rotate(-45deg); }
-
-@media (max-width: 1080px){
-  .burger{ display:flex; }
-  .nav-links{
-    position: fixed;
-    top: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
-    left:0; right:0;
-    flex-direction: column; align-items: stretch; gap:0;
-    background: rgba(255,255,255,.99);
-    backdrop-filter: blur(12px);
-    border-bottom:1px solid var(--line);
-    padding: 10px var(--gutter) 22px;
-    margin-left: 0;
-    transform: translateY(-8px);
-    opacity:0; visibility:hidden;
-    transition: opacity .22s ease, transform .22s ease, visibility .22s;
-    max-height: calc(100dvh - var(--nav-h) - 40px);
-    overflow-y: auto;
-  }
-  .nav[data-open="true"] .nav-links{ opacity:1; visibility:visible; transform:none; }
-  .nav-links a{ padding: 13px 4px; font-size:16px; border-bottom:1px solid var(--line); border-radius:0; }
-  .nav-links li:last-child{ margin-top:16px; }
-  .nav-links li:last-child a{ border:0; }
-  .btn--nav{ width:100%; padding: 13px 20px; }
-}
-
-/* ============================================================
-   HERO
-   ============================================================ */
-.hero{
-  position: relative;
-  min-height: min(88svh, 800px);
-  display:flex; align-items:center;
-  padding-block: clamp(52px, 7vw, 88px) clamp(48px, 7vw, 90px);
-  overflow: hidden;
-}
-.hero .wrap{
-  display:grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr);
-  gap: clamp(30px, 5vw, 70px);
-  align-items:center;
-}
-.hero-copy{ position:relative; z-index:3; }
-
-.h1{
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(38px, 6.4vw, 82px);
-  line-height: .98;
-  letter-spacing: -0.038em;
-  margin: 0;
-  max-width: 11ch;
-  overflow-wrap: break-word;
-  color: var(--ink);
-}
-.h1 span{ display:block; }
-.h1-sub{
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(17px, 2.5vw, 25px);
-  letter-spacing: -0.008em;
-  color: var(--accent);
-  margin: 18px 0 0;
-}
-.hero p.lede{ margin-top: 22px; max-width: 46ch; }
-.hero-actions{ display:flex; flex-wrap:wrap; gap:14px; margin-top: 34px; }
-
-/* thin oscilloscope baseline under the hero copy */
-.trace{
-  margin-top: 40px;
-  display:flex; align-items:center; gap:14px;
-  font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-3);
-}
-.trace svg{ flex: 1 1 auto; height: 26px; min-width:0; }
-.trace path{ stroke: var(--line-strong); fill:none; stroke-width:1.2; }
-
-/* canvas panel */
-.reservoir-stage{
-  position:relative;
-  aspect-ratio: 1 / 1;
-  width:100%;
-  z-index: 2;
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  background: var(--bg-soft);
-  overflow: hidden;
-}
-#reservoir{ width:100%; height:100%; display:block; }
-.stage-meta{
-  position:absolute; left:16px; bottom:12px;
-  font-family: var(--font-mono); font-size:11px; color: var(--ink-3);
-  letter-spacing:.03em;
-}
-.stage-meta b{ color: var(--accent); font-weight:600; }
-
-@media (max-width: 900px){
-  .hero{ min-height: auto; }
-  .hero .wrap{ grid-template-columns: 1fr; }
-  .reservoir-stage{ aspect-ratio: 16/11; }
-  .hero-actions .btn{ flex: 1 1 200px; }
-}
-
-/* ============================================================
-   ABOUT — concept cards
-   ============================================================ */
-.concepts{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  margin-top: clamp(38px, 5vw, 60px);
-}
-.concept{
-  background: var(--panel);
-  padding: 30px 26px 32px;
-  position: relative;
-  transition: background .3s ease;
-}
-.concept:hover{ background: var(--bg-soft); }
-.concept .ic{ width:30px; height:30px; color: var(--ink); margin-bottom: 22px; transition: color .25s ease; }
-.concept .ic *{ vector-effect: non-scaling-stroke; }
-.concept:hover .ic{ color: var(--accent); }
-.concept h3{ font-size: 18px; }
-.concept p{ color: var(--ink-2); font-size: 14.5px; margin: 10px 0 0; line-height:1.6; }
-.concept::after{
-  content:""; position:absolute; left:0; right:0; bottom:0; height:2px;
-  background: var(--accent);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .4s cubic-bezier(.2,.7,.3,1);
-}
-.concept:hover::after{ transform: scaleX(1); }
-
-/* ============================================================
-   RESEARCH — numbered index
-   ============================================================ */
-.bay{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-}
-.node-card{
-  position:relative;
-  background: var(--panel);
-  padding: 26px 24px 24px;
-  cursor: default;
-  transition: background .25s ease;
-}
-.node-card:hover, .node-card:focus-within{ background: var(--bg-soft); }
-.node-card .idx{
-  display:block;
-  font-family: var(--font-display); font-weight:800; font-size: 30px;
-  color: var(--accent-pale);
-  margin-bottom: 6px;
-  letter-spacing: -0.02em;
-  transition: color .25s ease;
-}
-.node-card:hover .idx, .node-card:focus-within .idx{ color: var(--accent); }
-.node-card h3{ font-size: 16.5px; font-weight:600; }
-.node-card p{
-  color: var(--ink-2); font-size: 13.5px; line-height:1.55;
-  margin: 8px 0 0;
-}
-
-/* ============================================================
-   HOW IT WORKS — signal chain
-   ============================================================ */
-.chain{
-  display:flex; align-items:stretch; gap:0;
-  margin-top: clamp(34px, 4vw, 54px);
-  padding: 8px 0;
-}
-.stage{
-  flex: 1 1 0; min-width:0;
-  text-align:center;
-}
-.stage .bulb{
-  position: relative;
-  width: 66px; height:66px; margin: 0 auto 16px;
-  border-radius: 50%;
-  border:1px solid var(--line-strong);
-  background: var(--bg-soft);
-  display:grid; place-items:center;
-  font-family: var(--font-mono); font-size: 11px; font-weight:500; color: var(--accent);
-}
-.stage--core .bulb{
-  width: 86px; height:86px;
-  border-color: var(--accent);
-  background: var(--accent-soft);
-}
-.stage h3{ font-size: 15.5px; font-weight:600; }
-.stage span{ display:block; font-family: var(--font-mono); font-size:11px; color: var(--ink-3); margin-top:6px; }
-.wire{
-  flex: 0 1 90px;
-  position: relative;
-  margin-top: 33px;
-  height: 1px;
-  background: var(--line-strong);
-  align-self: flex-start;
-}
-.stage--core + .wire, .wire:has(+ .stage--core){ margin-top: 43px; }
-.wire::after{
-  content:"";
-  position:absolute; top:50%; left:0;
-  width:6px; height:6px; margin-top:-3px; border-radius:50%;
-  background: var(--accent);
-  animation: travel 2.6s linear infinite;
-  animation-delay: var(--d, 0s);
-}
-@keyframes travel{
-  0%   { left:0%;   opacity:0; }
-  12%  { opacity:1; }
-  88%  { opacity:1; }
-  100% { left:100%; opacity:0; }
-}
-.chain-note{
-  margin-top: clamp(34px, 4vw, 52px);
-  max-width: 68ch;
-  color: var(--ink-2);
-}
-.chain-note code{
-  font-family: var(--font-mono); font-size:.86em; color: var(--accent-deep);
-  background: var(--accent-soft); padding: 1px 5px; border-radius: 4px;
-}
-@media (max-width: 860px){
-  .chain{ flex-direction: column; align-items:center; gap:0; }
-  .stage{ display:flex; align-items:center; gap:18px; text-align:left; width:100%; max-width:420px; }
-  .stage .bulb{ margin: 0; flex:0 0 auto; width:54px; height:54px; }
-  .stage--core .bulb{ width:68px; height:68px; }
-  .wire{
-    width:1px; height:34px; flex:0 0 34px;
-    margin: 0 0 0 26px; align-self:flex-start; background: var(--line-strong);
-  }
-  .stage--core + .wire, .wire:has(+ .stage--core){ margin-top: 0; }
-  .wire::after{ animation-name: travel-v; left:50%; margin-left:-3px; }
-  @keyframes travel-v{
-    0%{ top:0%; opacity:0;} 12%{opacity:1;} 88%{opacity:1;} 100%{ top:100%; opacity:0;}
-  }
-  .chain{ align-items: flex-start; padding-left: 4px; }
-}
-
-/* ============================================================
-   PROJECTS
-   ============================================================ */
-.projects{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-}
-.project{
-  display:flex; flex-direction:column;
-  background: var(--panel);
-  transition: background .25s ease;
-}
-.project:hover{ background: var(--bg-soft); }
-.raster{
-  aspect-ratio: 16 / 7;
-  background: var(--bg-soft);
-  border-bottom:1px solid var(--line);
-  position:relative;
-  overflow:hidden;
-}
-.raster svg{ width:100%; height:100%; display:block; }
-.project-body{ padding: 24px 24px 26px; display:flex; flex-direction:column; flex:1 1 auto; }
-.project-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; }
-.status{
-  flex:0 0 auto;
-  font-family: var(--font-body); font-weight:600; font-size: 10.5px; letter-spacing:.04em; text-transform:uppercase;
-  padding: 4px 9px; border-radius: 999px;
-  border:1px solid var(--line-strong); color: var(--ink-2);
-  white-space:nowrap;
-}
-.status[data-s="active"]{ color: var(--accent); border-color: var(--accent-line); background: var(--accent-soft); }
-.status[data-s="planned"]{ color: var(--amber); border-color: var(--amber-line); background: var(--amber-soft); }
-.project p{ color: var(--ink-2); font-size: 14.5px; margin: 12px 0 0; }
-.tech{ display:flex; flex-wrap:wrap; gap:7px; margin: 20px 0 0; padding:0; list-style:none; }
-.tech li{
-  font-family: var(--font-mono); font-size: 11px; color: var(--ink-3);
-  border:1px solid var(--line); border-radius: var(--r-sm);
-  padding: 3px 8px;
-}
-.project-foot{
-  margin-top: auto; padding-top: 20px;
-  display:flex; align-items:center; gap:16px;
-}
-.link-mono{
-  font-family: var(--font-mono); font-size:12.5px; color: var(--accent);
-  text-decoration:none; border-bottom:1px solid transparent; padding-bottom:1px;
-  transition: border-color .2s ease;
-}
-.link-mono:hover{ border-bottom-color: var(--accent); }
-
-/* ============================================================
-   PEOPLE
-   ============================================================ */
-.people{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  overflow: hidden;
-}
-.person{
-  background: var(--panel);
-  padding: 24px 22px 22px;
-  transition: background .25s ease;
-}
-.person:hover{ background: var(--bg-soft); }
-.avatar{
-  width:60px; height:60px; border-radius:50%;
-  border:1px solid var(--line-strong);
-  background: var(--bg-soft);
-  display:grid; place-items:center;
-  font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--ink);
-  margin-bottom: 18px;
-  overflow:hidden;
-}
-.avatar img{ width:100%; height:100%; object-fit:cover; }
-.person h3{ font-size: 16px; font-weight:600; }
-.person .role{ font-size: 12.5px; font-weight:600; color: var(--accent); margin-top:6px; }
-.person .int{ color: var(--ink-3); font-size: 13px; margin: 12px 0 0; line-height:1.5; }
-.person .socials{ display:flex; gap:12px; margin-top:16px; }
-.person .socials a{ color: var(--ink-3); transition: color .2s ease; display:inline-flex; }
-.person .socials a:hover{ color: var(--accent); }
-.person .socials svg{ width:16px; height:16px; }
-
-/* ============================================================
-   JOIN
-   ============================================================ */
-.join{
-  position: relative;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  background: var(--bg-soft);
-}
-.join .wrap{
-  display:grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
-  gap: clamp(36px, 6vw, 80px);
-  align-items:start;
-}
-.join h2{ font-size: clamp(32px, 5.4vw, 60px); max-width: 16ch; }
-.join .lede{ margin-top: 24px; }
-.contact{ display:flex; flex-wrap:wrap; gap: 12px 30px; margin-top: 30px; font-size: 14px; font-weight:500; }
-.contact a{ color: var(--ink-2); text-decoration:none; display:inline-flex; align-items:center; gap:8px; }
-.contact a:hover{ color: var(--accent); }
-.contact .soon{ color: var(--ink-3); display:inline-flex; align-items:center; gap:8px; }
-.contact .k{ color: var(--ink-3); font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
-
-.form{
-  background: var(--panel);
-  border:1px solid var(--line);
-  border-radius: var(--r-lg);
-  padding: clamp(24px, 3vw, 32px);
-}
-.field{ margin-bottom: 18px; }
-.field:last-of-type{ margin-bottom: 24px; }
-.field label{
-  display:block; font-size: 12.5px; font-weight:600;
-  color: var(--ink-2); margin-bottom: 8px;
-}
-.field input, .field select, .field textarea{
-  width:100%;
-  background: var(--bg);
-  border:1px solid var(--line);
-  border-radius: var(--r-sm);
-  color: var(--ink);
-  font-family: var(--font-body); font-size: 15px;
-  padding: 11px 13px;
-  transition: border-color .2s ease, box-shadow .2s ease;
-}
-.field textarea{ resize: vertical; min-height: 92px; }
-.field input:focus, .field select:focus, .field textarea:focus{
-  outline:none; border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
-}
-.field input::placeholder, .field textarea::placeholder{ color: var(--ink-3); }
-.form-note{
-  font-size: 12px; color: var(--ink-3);
-  margin: 14px 0 0; line-height:1.6;
-}
-.form-note[data-state="ok"]{ color: var(--accent); }
-@media (max-width: 900px){
-  .join .wrap{ grid-template-columns: 1fr; }
-}
-
-/* ============================================================
-   NEWS
-   ============================================================ */
-.feed{ list-style:none; margin: 0; padding: 0; border-top:1px solid var(--line); }
-.feed li{ border-bottom:1px solid var(--line); }
-.feed a{
-  display:grid;
-  grid-template-columns: 116px 132px 1fr auto;
-  gap: 24px; align-items: baseline;
-  padding: 22px 8px 22px 4px;
-  text-decoration:none;
-  transition: background .25s ease, padding .25s ease;
-}
-.feed a:hover{ background: var(--bg-soft); padding-left: 14px; }
-.feed .when{ font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-3); }
-.feed .kind{ font-size: 11px; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color: var(--accent); }
-.feed h3{ font-size: 17px; font-weight: 600; }
-.feed p{ margin: 6px 0 0; color: var(--ink-3); font-size: 13.5px; }
-.feed .go{ color: var(--ink-3); font-size: 18px; line-height:1; transition: color .2s ease, transform .2s ease; }
-.feed a:hover .go{ color: var(--accent); transform: translateX(3px); }
-@media (max-width: 800px){
-  .feed a{ grid-template-columns: 1fr auto; gap: 6px 16px; }
-  .feed .when{ grid-column: 1; }
-  .feed .kind{ grid-column: 2; grid-row:1; text-align:right; }
-  .feed .txt{ grid-column: 1 / -1; }
-  .feed .go{ display:none; }
-}
-
-/* ============================================================
-   FOOTER
-   ============================================================ */
-footer{ background: var(--bg-soft); border-top:1px solid var(--line); padding-block: 58px 34px; }
-.foot-grid{
-  display:grid; grid-template-columns: minmax(0,1.3fr) repeat(2, minmax(0,.7fr));
-  gap: 40px;
-}
-footer .brand{ font-size: 19px; }
-footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-width: 34ch; }
-.foot-col h4{ font-weight:600; font-size: 11.5px; color: var(--ink-3); letter-spacing:.06em; text-transform:uppercase; }
-.foot-col ul{ list-style:none; padding:0; margin: 16px 0 0; display:grid; gap:10px; }
-.foot-col a{ color: var(--ink-2); text-decoration:none; font-size: 14px; }
-.foot-col a:hover{ color: var(--accent); }
-.foot-bottom{
-  margin-top: 46px; padding-top: 22px; border-top:1px solid var(--line);
-  display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
-  font-size: 12.5px; color: var(--ink-3);
-}
-@media (max-width: 700px){ .foot-grid{ grid-template-columns: 1fr 1fr; } footer .brand-block{ grid-column: 1 / -1; } }
-
-/* ============================================================
-   DEMO — echo state game
-   ============================================================ */
-.demo-grid{
-  display:grid;
-  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
-  gap: clamp(30px, 5vw, 64px);
-  align-items:center;
-}
-.rig{
-  position:relative;
-  width: min(100%, 440px);
-  aspect-ratio: 1 / 1;
-  margin-inline: auto;
-}
-.rig svg.wires{ position:absolute; inset:0; width:100%; height:100%; }
-.rig svg.wires line{ stroke: var(--line-strong); stroke-width:1; }
-.cell{
-  position:absolute;
-  width: 15%; aspect-ratio:1;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  border:1px solid var(--line-strong);
-  background: var(--panel);
-  color: var(--ink-3);
-  font-family: var(--font-mono); font-size: 11px;
-  cursor: pointer;
-  display:grid; place-items:center;
-  transition: transform .12s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease, color .25s ease;
-}
-.cell:disabled{ cursor: default; }
-.cell:not(:disabled):hover{ border-color: var(--accent); transform: translate(-50%,-50%) scale(1.06); }
-.cell[data-fire="1"]{
-  background: var(--accent);
-  border-color: var(--accent-deep);
-  color: #fff;
-  box-shadow: 0 0 0 4px var(--accent-soft);
-  transform: translate(-50%,-50%) scale(1.14);
-}
-.cell[data-fire="bad"]{
-  background: #dc2626;
-  border-color: #b91c1c; color:#fff;
-  box-shadow: 0 0 0 4px rgba(220,38,38,.14);
-}
-.rig-hud{
-  position:absolute; left:50%; top:50%; transform: translate(-50%,-50%);
-  text-align:center; pointer-events:none;
-  font-family: var(--font-mono); font-size: 12px; color: var(--ink-3);
-  width: 46%;
-}
-.rig-hud b{ display:block; font-size: 13px; color: var(--accent); font-weight:600; margin-bottom:4px; }
-
-.readout{ display:flex; flex-wrap:wrap; gap: 10px 26px; margin: 26px 0 0; font-family: var(--font-mono); font-size: 12.5px; }
-.readout div{ color: var(--ink-3); }
-.readout span{ color: var(--accent); font-weight:600; }
-.demo-actions{ display:flex; flex-wrap:wrap; gap: 12px; margin-top: 26px; }
-.demo-status{
-  font-size: 13px; color: var(--ink-2);
-  margin: 18px 0 0; min-height: 2.6em; line-height:1.6;
-}
-@media (max-width: 880px){
-  .demo-grid{ grid-template-columns: 1fr; }
-  .rig{ order: 2; }
-}
-
-/* supervisor row */
-.supervisor{
-  display:flex; flex-wrap:wrap; align-items:center; gap: 22px;
-  border:1px solid var(--line);
-  border-left: 3px solid var(--accent);
-  border-radius: var(--r-md);
-  background: var(--bg-soft);
-  padding: 22px 26px;
-  margin-bottom: 16px;
-}
-.supervisor .avatar{ margin:0; flex:0 0 auto; background: var(--panel); }
-.supervisor .who{ flex: 1 1 260px; }
-.supervisor h3{ font-size: 18px; font-weight:600; }
-.supervisor .role{ font-size:12.5px; font-weight:600; color: var(--accent); margin:6px 0 0; }
-.supervisor .int{ color: var(--ink-3); font-size: 13.5px; margin: 8px 0 0; }
-.supervisor-links{ display:flex; flex-direction:column; gap:8px; flex:0 0 auto; }
-
-/* ============================================================
-   MOTION
-   ============================================================ */
-.reveal{ opacity:0; transform: translateY(16px); }
-.reveal.in{ opacity:1; transform:none; transition: opacity .75s cubic-bezier(.22,.61,.36,1), transform .75s cubic-bezier(.22,.61,.36,1); }
-.reveal.in[data-delay="1"]{ transition-delay:.07s; }
-.reveal.in[data-delay="2"]{ transition-delay:.14s; }
-.reveal.in[data-delay="3"]{ transition-delay:.21s; }
-
-@media (prefers-reduced-motion: reduce){
-  html{ scroll-behavior: auto; }
-  *, *::before, *::after{
-    animation-duration: .001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .001ms !important;
-  }
-  .reveal{ opacity:1; transform:none; }
-  .wire::after{ display:none; }
-}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip" href="#main"><span lang="pl">Przejdź do treści</span><span lang="en">Skip to content</span></a>
+
+<!-- ============ INSTITUTION BAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <a class="logo-uw" href="https://www.uw.edu.pl/" target="_blank" rel="noopener"><img src="obrazy/LOGO_UW.png" width="658" height="710" alt="Uniwersytet Warszawski"></a>
+    <a class="logo-fuw" href="https://www.fuw.edu.pl/" target="_blank" rel="noopener"><img src="obrazy/Logo_FUW.png" width="876" height="269" alt="Faculty of Physics, University of Warsaw"></a>
+    <a class="logo-fuw-mark" href="https://www.fuw.edu.pl/" target="_blank" rel="noopener"><img src="obrazy/Logo_FUW2.png" width="698" height="341" alt="FUW — Wydział Fizyki UW"></a>
+  </div>
+</div>
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Q-NOC<span class="brand-long">Quantum Neuromorphic Optical Computing</span></a>
-    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <a class="brand" href="#start"><span class="dot" aria-hidden="true"></span>Q-NOC<span class="brand-long">Quantum Neuromorphic Optical Computing</span></a>
+    <button class="burger" id="burger" aria-label="Otwórz menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#demo">Play</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#people">People</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a class="btn btn--primary btn--nav" href="#join">Join us</a></li>
+      <li><a href="#start" aria-current="page"><span lang="pl">Start</span><span lang="en">Home</span></a></li>
+      <li><a href="#research"><span lang="pl">Badania</span><span lang="en">Research</span></a></li>
+      <li><a href="#how"><span lang="pl">Jak to działa</span><span lang="en">How it works</span></a></li>
+      <li><a href="#lab"><span lang="pl">Laboratorium</span><span lang="en">Laboratory</span></a></li>
+      <li><a href="#people"><span lang="pl">Ludzie</span><span lang="en">People</span></a></li>
+      <li><a href="#news"><span lang="pl">Aktualności</span><span lang="en">News</span></a></li>
+      <li class="nav-cta"><a class="btn btn--primary btn--nav" href="#join"><span lang="pl">Dołącz</span><span lang="en">Join us</span></a></li>
+      <li class="nav-lang">
+        <div class="lang" role="group" aria-label="Język / Language">
+          <button type="button" data-lang="pl" aria-pressed="true">PL</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </li>
     </ul>
   </div>
 </header>
 
 <main id="main">
 
-<!-- ============ HERO ============ -->
-<section class="hero" id="top">
+<!-- ==================================================================
+     TAB: START
+     ================================================================== -->
+<div class="panel is-active" id="start">
+
+<section class="hero">
+  <div class="hero-bg"><canvas id="reservoir" aria-hidden="true"></canvas></div>
   <div class="wrap">
     <div class="hero-copy">
-      <h1 class="h1"><span>Quantum</span><span>Neuromorphic</span><span>Optical</span><span>Computing</span></h1>
-      <p class="h1-sub">Student research group · Faculty of Physics, University of Warsaw</p>
-      <p class="lede">Exploring computation through dynamics, spikes, and physical intelligence.</p>
+      <p class="tag">Q-NOC</p>
+      <h1 class="h1"><span class="line">Quantum Neuromorphic</span> <span class="line">Optical Computing</span></h1>
+      <p class="h1-sub">
+        <span lang="pl">Studencka grupa badawcza · Wydział Fizyki Uniwersytetu Warszawskiego</span>
+        <span lang="en">Student research group · Faculty of Physics, University of Warsaw</span>
+      </p>
+      <p class="lede">
+        <span lang="pl">Badamy obliczenia, które wykonuje sama fizyka: dynamika, impulsy i światło zamiast tranzystorów.</span>
+        <span lang="en">We study computation carried out by physics itself: dynamics, spikes and light instead of transistors.</span>
+      </p>
       <div class="hero-actions">
-        <a class="btn btn--primary" href="#research">Explore our research</a>
-        <a class="btn" href="#join">Join the group</a>
+        <a class="btn btn--primary" href="#research"><span lang="pl">Poznaj nasze badania</span><span lang="en">Explore our research</span></a>
+        <a class="btn" href="#join"><span lang="pl">Dołącz do grupy</span><span lang="en">Join the group</span></a>
       </div>
       <div class="trace" aria-hidden="true">
-        <span>spike&nbsp;train</span>
+        <span lang="pl">ciąg&nbsp;impulsów</span><span lang="en">spike&nbsp;train</span>
         <svg viewBox="0 0 420 26" preserveAspectRatio="none" role="presentation">
           <path id="trace-path" d="M0 20 L420 20"></path>
         </svg>
         <span>t →</span>
       </div>
     </div>
-
-    <div class="reservoir-stage">
-      <canvas id="reservoir" aria-hidden="true"></canvas>
-      <p class="stage-meta">reservoir · <b id="meta-n">—</b> nodes · <b id="meta-k">—</b> connections · sparse recurrent topology</p>
-    </div>
   </div>
+  <p class="stage-meta" aria-hidden="true">
+    <span lang="pl">rezerwuar · <b data-meta="n">—</b> węzłów · <b data-meta="k">—</b> połączeń · rzadka topologia rekurencyjna</span>
+    <span lang="en">reservoir · <b data-meta="n">—</b> nodes · <b data-meta="k">—</b> connections · sparse recurrent topology</span>
+  </p>
 </section>
 
 <hr class="rule">
 
-<!-- ============ ABOUT ============ -->
 <section class="band" id="about">
   <div class="wrap">
     <div class="section-head reveal">
-      <p class="tag">about</p>
-      <h2>What is Q-NOC?</h2>
-      <p class="lede">Q-NOC is a student research group at the Faculty of Physics, University of Warsaw, exploring unconventional approaches to computation inspired by biological neural systems and dynamical processes.</p>
+      <p class="tag"><span lang="pl">o nas</span><span lang="en">about</span></p>
+      <h2><span lang="pl">Czym jest Q-NOC?</span><span lang="en">What is Q-NOC?</span></h2>
+      <p class="lede">
+        <span lang="pl">Q-NOC to studencka grupa badawcza na Wydziale Fizyki Uniwersytetu Warszawskiego. Zajmujemy się niekonwencjonalnymi sposobami liczenia, inspirowanymi biologicznymi układami nerwowymi i procesami dynamicznymi — ze szczególnym naciskiem na układy optyczne, rozwijane w <a href="#lab">Laboratorium Polarytonowym</a>.</span>
+        <span lang="en">Q-NOC is a student research group at the Faculty of Physics, University of Warsaw. We explore unconventional approaches to computation inspired by biological neural systems and dynamical processes — with a particular focus on optical systems developed in the <a href="#lab">Polariton Laboratory</a>.</span>
+      </p>
     </div>
 
     <div class="concepts reveal">
@@ -859,7 +114,7 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
           <path d="M10 12 L21 11 M21 11 L22 19 M22 19 L13 21 M13 21 L10 12 M10 12 L22 19"/>
         </svg>
         <h3>Reservoir Computing</h3>
-        <p>Dynamic systems as computational substrates.</p>
+        <p><span lang="pl">Układy dynamiczne jako podłoże obliczeń — uczymy tylko warstwę odczytu.</span><span lang="en">Dynamical systems as computational substrates — only the readout is trained.</span></p>
       </article>
 
       <article class="concept">
@@ -868,80 +123,88 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
           <path d="M13 9V4 M19 9V4 M13 23v5 M19 23v5 M9 13H4 M9 19H4 M23 13h5 M23 19h5"/>
           <circle cx="16" cy="16" r="2.4"/>
         </svg>
-        <h3>Neuromorphic Computing</h3>
-        <p>Computing architectures inspired by biological neural systems.</p>
+        <h3><span lang="pl">Obliczenia neuromorficzne</span><span lang="en">Neuromorphic Computing</span></h3>
+        <p><span lang="pl">Architektury wzorowane na biologicznych układach nerwowych.</span><span lang="en">Computing architectures inspired by biological neural systems.</span></p>
       </article>
 
       <article class="concept">
         <svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
           <path d="M3 22h4l2-13 3 13 3-9 2 6 2-4 2 7h6"/>
         </svg>
-        <h3>Spiking Neural Networks</h3>
-        <p>Information processing through temporal spike-based dynamics.</p>
+        <h3><span lang="pl">Impulsowe sieci neuronowe</span><span lang="en">Spiking Neural Networks</span></h3>
+        <p><span lang="pl">Przetwarzanie informacji zapisanej w czasie pojawiania się impulsów.</span><span lang="en">Information processing through temporal spike-based dynamics.</span></p>
       </article>
 
       <article class="concept">
         <svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
-          <path d="M16 4c-5 0-8 3.4-8 7 0 1.8.7 3 .7 4.4 0 1.6-1.4 2.3-1.4 4 0 2.6 2.6 4 4.5 4 .6 2 2.2 3.6 4.2 3.6"/>
-          <path d="M16 4c5 0 8 3.4 8 7 0 1.8-.7 3-.7 4.4 0 1.6 1.4 2.3 1.4 4 0 2.6-2.6 4-4.5 4-.6 2-2.2 3.6-4.2 3.6"/>
-          <path d="M16 4v23"/>
+          <circle cx="16" cy="16" r="4"/>
+          <path d="M16 3v5 M16 24v5 M3 16h5 M24 16h5 M6.8 6.8l3.5 3.5 M21.7 21.7l3.5 3.5 M25.2 6.8l-3.5 3.5 M10.3 21.7l-3.5 3.5"/>
         </svg>
-        <h3>Physical Intelligence</h3>
-        <p>Exploring computation beyond conventional digital architectures.</p>
+        <h3><span lang="pl">Obliczenia optyczne</span><span lang="en">Optical Computing</span></h3>
+        <p><span lang="pl">Światło i polarytony jako nośnik obliczeń poza klasyczną elektroniką cyfrową.</span><span lang="en">Light and polaritons as a computing medium beyond conventional digital electronics.</span></p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ============ RESEARCH ============ -->
-<section class="band band--tight" id="research">
+</div>
+
+<!-- ==================================================================
+     TAB: RESEARCH
+     ================================================================== -->
+<div class="panel" id="research">
+
+<section class="band">
   <div class="wrap">
     <div class="section-head reveal">
-      <p class="tag">research</p>
-      <h2>Research</h2>
-      <p class="lede">Eight directions we work along. They overlap on purpose — most of what we build sits between two of them.</p>
+      <p class="tag"><span lang="pl">badania</span><span lang="en">research</span></p>
+      <h2><span lang="pl">Kierunki badań</span><span lang="en">Research</span></h2>
+      <p class="lede">
+        <span lang="pl">Osiem kierunków, wzdłuż których pracujemy. Celowo się przenikają — większość tego, co budujemy, leży pomiędzy dwoma z nich.</span>
+        <span lang="en">Eight directions we work along. They overlap on purpose — most of what we build sits between two of them.</span>
+      </p>
     </div>
 
     <div class="bay reveal">
       <article class="node-card" tabindex="0">
         <span class="idx">01</span>
         <h3>Reservoir Computing</h3>
-        <p>Training only a readout on top of a rich, untrained recurrent substrate.</p>
+        <p><span lang="pl">Uczymy wyłącznie warstwę odczytu nad bogatym, nietrenowanym układem rekurencyjnym.</span><span lang="en">Training only a readout on top of a rich, untrained recurrent substrate.</span></p>
       </article>
       <article class="node-card" tabindex="0">
         <span class="idx">02</span>
-        <h3>Spiking Neural Networks</h3>
-        <p>Networks that carry information in spike timing rather than continuous activations.</p>
+        <h3><span lang="pl">Impulsowe sieci neuronowe</span><span lang="en">Spiking Neural Networks</span></h3>
+        <p><span lang="pl">Sieci, które niosą informację w czasie impulsów, a nie w ciągłych aktywacjach.</span><span lang="en">Networks that carry information in spike timing rather than continuous activations.</span></p>
       </article>
       <article class="node-card" tabindex="0">
         <span class="idx">03</span>
-        <h3>Neuromorphic Hardware</h3>
-        <p>Chips and circuits where memory and computation share the same physical place.</p>
+        <h3><span lang="pl">Sprzęt neuromorficzny</span><span lang="en">Neuromorphic Hardware</span></h3>
+        <p><span lang="pl">Układy, w których pamięć i obliczenia dzielą to samo fizyczne miejsce.</span><span lang="en">Chips and circuits where memory and computation share the same physical place.</span></p>
       </article>
       <article class="node-card" tabindex="0">
         <span class="idx">04</span>
         <h3>Edge AI</h3>
-        <p>Inference under hard power, latency and memory budgets, away from the data centre.</p>
+        <p><span lang="pl">Wnioskowanie przy twardych ograniczeniach mocy, opóźnień i pamięci, z dala od centrum danych.</span><span lang="en">Inference under hard power, latency and memory budgets, away from the data centre.</span></p>
       </article>
       <article class="node-card" tabindex="0">
         <span class="idx">05</span>
-        <h3>Dynamical Systems</h3>
-        <p>Attractors, bifurcations and the edge of chaos as a lens on what a network can compute.</p>
+        <h3><span lang="pl">Układy dynamiczne</span><span lang="en">Dynamical Systems</span></h3>
+        <p><span lang="pl">Atraktory, bifurkacje i krawędź chaosu jako sposób patrzenia na to, co sieć potrafi policzyć.</span><span lang="en">Attractors, bifurcations and the edge of chaos as a lens on what a network can compute.</span></p>
       </article>
       <article class="node-card" tabindex="0">
         <span class="idx">06</span>
-        <h3>Brain-Inspired Computing</h3>
-        <p>Borrowing principles from neuroscience — plasticity, sparsity, locality — not just its vocabulary.</p>
+        <h3><span lang="pl">Obliczenia inspirowane mózgiem</span><span lang="en">Brain-Inspired Computing</span></h3>
+        <p><span lang="pl">Zasady zapożyczone z neuronauki — plastyczność, rzadkość, lokalność — a nie tylko jej słownictwo.</span><span lang="en">Borrowing principles from neuroscience — plasticity, sparsity, locality — not just its vocabulary.</span></p>
       </article>
       <article class="node-card" tabindex="0">
         <span class="idx">07</span>
-        <h3>Analog / Mixed-Signal Computing</h3>
-        <p>Letting physics do the arithmetic, with digital logic only where it earns its power budget.</p>
+        <h3><span lang="pl">Obliczenia analogowe i mieszane</span><span lang="en">Analog / Mixed-Signal Computing</span></h3>
+        <p><span lang="pl">Arytmetykę wykonuje fizyka, a logika cyfrowa pojawia się tylko tam, gdzie warto wydać na nią energię.</span><span lang="en">Letting physics do the arithmetic, with digital logic only where it earns its power budget.</span></p>
       </article>
       <article class="node-card" tabindex="0">
         <span class="idx">08</span>
-        <h3>Event-Based Processing</h3>
-        <p>Sensors and pipelines that produce data only when something actually changes.</p>
+        <h3><span lang="pl">Przetwarzanie zdarzeniowe</span><span lang="en">Event-Based Processing</span></h3>
+        <p><span lang="pl">Czujniki i potoki danych, które generują dane tylko wtedy, gdy coś rzeczywiście się zmienia.</span><span lang="en">Sensors and pipelines that produce data only when something actually changes.</span></p>
       </article>
     </div>
   </div>
@@ -949,102 +212,15 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
 
 <hr class="rule">
 
-<!-- ============ HOW IT WORKS ============ -->
-<section class="band" id="how">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="tag">how it works</p>
-      <h2>Signal path of a reservoir</h2>
-    </div>
-
-    <div class="chain reveal" role="img" aria-label="Signal chain: input, reservoir, dynamics, readout, output">
-      <div class="stage">
-        <div class="bulb" aria-hidden="true">in</div>
-        <h3>Input</h3><span>u(t)</span>
-      </div>
-      <div class="wire" style="--d:0s"></div>
-      <div class="stage stage--core">
-        <div class="bulb" aria-hidden="true">res</div>
-        <h3>Reservoir</h3><span>W · fixed</span>
-      </div>
-      <div class="wire" style="--d:.5s"></div>
-      <div class="stage">
-        <div class="bulb" aria-hidden="true">dyn</div>
-        <h3>Dynamics</h3><span>x(t)</span>
-      </div>
-      <div class="wire" style="--d:1s"></div>
-      <div class="stage">
-        <div class="bulb" aria-hidden="true">out</div>
-        <h3>Readout</h3><span>W_out · trained</span>
-      </div>
-      <div class="wire" style="--d:1.5s"></div>
-      <div class="stage">
-        <div class="bulb" aria-hidden="true">y</div>
-        <h3>Output</h3><span>y(t)</span>
-      </div>
-    </div>
-
-    <p class="chain-note reveal">
-      In reservoir computing the recurrent layer stays fixed. An input signal perturbs a complex, high-dimensional
-      dynamical system, and the resulting trajectory <code>x(t)</code> becomes the computational space — a rich,
-      nonlinear, fading-memory representation of everything the reservoir has recently seen. Only the readout is
-      trained: it learns to interpret that state, not to shape it. The interesting question is therefore not how to
-      optimise the network, but which physical or simulated system makes a good reservoir in the first place.
-    </p>
-  </div>
-</section>
-
-<hr class="rule">
-
-<!-- ============ DEMO / GAME ============ -->
-<section class="band" id="demo">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="tag">try it</p>
-      <h2>Be the readout layer</h2>
-    </div>
-
-    <div class="demo-grid reveal">
-      <div>
-        <p class="lede" style="margin-top:0">
-          A reservoir holds a fading trace of what it has just seen. Watch the spikes travel through the
-          network, then replay them in order — you are the trained readout, decoding a state you did not
-          shape. Each round adds one step, until the memory outruns you.
-        </p>
-
-        <div class="readout">
-          <div>round <span id="g-round">0</span></div>
-          <div>memory capacity <span id="g-len">0</span></div>
-          <div>best <span id="g-best">0</span></div>
-        </div>
-
-        <div class="demo-actions">
-          <button class="btn btn--primary" id="g-start" type="button">Run the reservoir</button>
-          <button class="btn" id="g-replay" type="button" disabled>Replay the sequence</button>
-        </div>
-
-        <p class="demo-status" id="g-status" role="status" aria-live="polite">
-          Press run. Eight nodes, one recurrent loop, no training on your side.
-        </p>
-      </div>
-
-      <div class="rig" id="rig">
-        <svg class="wires" id="g-wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
-        <div class="rig-hud" id="g-hud"><b>idle</b>reservoir at rest</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<!-- ============ PROJECTS ============ -->
 <section class="band" id="projects">
   <div class="wrap">
     <div class="section-head reveal">
-      <p class="tag">projects</p>
-      <h2>Projects</h2>
-      <p class="lede">Work in progress. Repositories, write-ups and results get linked here as they land.</p>
+      <p class="tag"><span lang="pl">projekty</span><span lang="en">projects</span></p>
+      <h2><span lang="pl">Projekty</span><span lang="en">Projects</span></h2>
+      <p class="lede">
+        <span lang="pl">Prace w toku. Repozytoria, opisy i wyniki będą tu dodawane w miarę postępów.</span>
+        <span lang="en">Work in progress. Repositories, write-ups and results get linked here as they land.</span>
+      </p>
     </div>
 
     <div class="projects">
@@ -1053,13 +229,13 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
         <div class="project-body">
           <div class="project-top">
             <h3>Spiking Reservoir</h3>
-            <span class="status" data-s="active">active</span>
+            <span class="status" data-s="active"><span lang="pl">w toku</span><span lang="en">active</span></span>
           </div>
-          <p>Simulation of recurrent spiking neural reservoirs.</p>
+          <p><span lang="pl">Symulacje rekurencyjnych rezerwuarów zbudowanych z neuronów impulsowych.</span><span lang="en">Simulation of recurrent spiking neural reservoirs.</span></p>
           <ul class="tech"><li>Python</li><li>Brian2</li><li>NumPy</li></ul>
           <div class="project-foot">
             <a class="link-mono" href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub ↗</a>
-            <span class="link-mono" style="color:var(--ink-3)">write-up soon</span>
+            <span class="link-mono" style="color:var(--ink-3)"><span lang="pl">opis wkrótce</span><span lang="en">write-up soon</span></span>
           </div>
         </div>
       </article>
@@ -1069,13 +245,13 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
         <div class="project-body">
           <div class="project-top">
             <h3>Neuromorphic Edge</h3>
-            <span class="status" data-s="active">active</span>
+            <span class="status" data-s="active"><span lang="pl">w toku</span><span lang="en">active</span></span>
           </div>
-          <p>Exploring low-power inference on neuromorphic architectures.</p>
+          <p><span lang="pl">Energooszczędne wnioskowanie na architekturach neuromorficznych.</span><span lang="en">Exploring low-power inference on neuromorphic architectures.</span></p>
           <ul class="tech"><li>Lava</li><li>C</li><li>FPGA</li></ul>
           <div class="project-foot">
             <a class="link-mono" href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub ↗</a>
-            <span class="link-mono" style="color:var(--ink-3)">write-up soon</span>
+            <span class="link-mono" style="color:var(--ink-3)"><span lang="pl">opis wkrótce</span><span lang="en">write-up soon</span></span>
           </div>
         </div>
       </article>
@@ -1085,13 +261,13 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
         <div class="project-body">
           <div class="project-top">
             <h3>Physical Reservoir</h3>
-            <span class="status" data-s="planned">planned</span>
+            <span class="status" data-s="planned"><span lang="pl">planowany</span><span lang="en">planned</span></span>
           </div>
-          <p>Experiments with physical systems as computational reservoirs.</p>
-          <ul class="tech"><li>Analog electronics</li><li>DAQ</li><li>Python</li></ul>
+          <p><span lang="pl">Eksperymenty z układami fizycznymi w roli rezerwuarów obliczeniowych.</span><span lang="en">Experiments with physical systems as computational reservoirs.</span></p>
+          <ul class="tech"><li><span lang="pl">Elektronika analogowa</span><span lang="en">Analog electronics</span></li><li>DAQ</li><li>Python</li></ul>
           <div class="project-foot">
             <a class="link-mono" href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub ↗</a>
-            <span class="link-mono" style="color:var(--ink-3)">write-up soon</span>
+            <span class="link-mono" style="color:var(--ink-3)"><span lang="pl">opis wkrótce</span><span lang="en">write-up soon</span></span>
           </div>
         </div>
       </article>
@@ -1101,13 +277,13 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
         <div class="project-body">
           <div class="project-top">
             <h3>Event-Driven AI</h3>
-            <span class="status" data-s="planned">planned</span>
+            <span class="status" data-s="planned"><span lang="pl">planowany</span><span lang="en">planned</span></span>
           </div>
-          <p>Temporal and event-based approaches to machine learning.</p>
-          <ul class="tech"><li>PyTorch</li><li>snnTorch</li><li>DVS data</li></ul>
+          <p><span lang="pl">Czasowe i zdarzeniowe podejścia do uczenia maszynowego.</span><span lang="en">Temporal and event-based approaches to machine learning.</span></p>
+          <ul class="tech"><li>PyTorch</li><li>snnTorch</li><li><span lang="pl">dane DVS</span><span lang="en">DVS data</span></li></ul>
           <div class="project-foot">
             <a class="link-mono" href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub ↗</a>
-            <span class="link-mono" style="color:var(--ink-3)">write-up soon</span>
+            <span class="link-mono" style="color:var(--ink-3)"><span lang="pl">opis wkrótce</span><span lang="en">write-up soon</span></span>
           </div>
         </div>
       </article>
@@ -1115,27 +291,323 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
   </div>
 </section>
 
-<hr class="rule">
+</div>
 
-<!-- ============ PEOPLE ============ -->
-<section class="band" id="people">
+<!-- ==================================================================
+     TAB: HOW IT WORKS
+     ================================================================== -->
+<div class="panel" id="how">
+
+<section class="band">
   <div class="wrap">
     <div class="section-head reveal">
-      <p class="tag">people</p>
-      <h2>The people behind the reservoir</h2>
-      <p class="lede">A small group at the Faculty of Physics, University of Warsaw. Photos and research interests are still being filled in.</p>
+      <p class="tag"><span lang="pl">jak to działa</span><span lang="en">how it works</span></p>
+      <h2><span lang="pl">Jak liczy układ neuromorficzny</span><span lang="en">How a neuromorphic system computes</span></h2>
+      <p class="lede">
+        <span lang="pl">Zwykły komputer oddziela pamięć od procesora i wykonuje instrukcje krok po kroku, w rytmie zegara. Mózg działa inaczej: miliardy neuronów pracują równolegle, komunikują się krótkimi impulsami, a pamięć — siła połączeń między nimi — znajduje się dokładnie tam, gdzie odbywa się obliczenie. Obliczenia neuromorficzne przenoszą te zasady do sprzętu.</span>
+        <span lang="en">A conventional computer keeps memory apart from the processor and executes instructions one by one, in step with a clock. The brain works differently: billions of neurons operate in parallel, talk in brief spikes, and the memory — the strength of the connections between them — sits exactly where the computation happens. Neuromorphic computing carries these principles into hardware.</span>
+      </p>
+    </div>
+
+    <div class="chain reveal" role="img" aria-label="Bodziec → synapsy → neuron → dynamika sieci → odczyt / Stimulus → synapses → neuron → network dynamics → readout">
+      <div class="stage">
+        <div class="bulb" aria-hidden="true">in</div>
+        <h3><span lang="pl">Bodziec</span><span lang="en">Stimulus</span></h3>
+        <span class="sym"><span lang="pl">impulsy · u(t)</span><span lang="en">spikes · u(t)</span></span>
+      </div>
+      <div class="wire" style="--d:0s"></div>
+      <div class="stage">
+        <div class="bulb" aria-hidden="true">w</div>
+        <h3><span lang="pl">Synapsy</span><span lang="en">Synapses</span></h3>
+        <span class="sym"><span lang="pl">wagi połączeń</span><span lang="en">connection weights</span></span>
+      </div>
+      <div class="wire" style="--d:.5s"></div>
+      <div class="stage stage--core">
+        <div class="bulb" aria-hidden="true">LIF</div>
+        <h3>Neuron</h3>
+        <span class="sym"><span lang="pl">sumuj · przekrocz próg · wyślij impuls</span><span lang="en">integrate · cross threshold · fire</span></span>
+      </div>
+      <div class="wire" style="--d:1s"></div>
+      <div class="stage">
+        <div class="bulb" aria-hidden="true">x(t)</div>
+        <h3><span lang="pl">Dynamika sieci</span><span lang="en">Network dynamics</span></h3>
+        <span class="sym"><span lang="pl">zanikająca pamięć</span><span lang="en">fading memory</span></span>
+      </div>
+      <div class="wire" style="--d:1.5s"></div>
+      <div class="stage">
+        <div class="bulb" aria-hidden="true">out</div>
+        <h3><span lang="pl">Odczyt</span><span lang="en">Readout</span></h3>
+        <span class="sym"><span lang="pl">W_out · uczony</span><span lang="en">W_out · trained</span></span>
+      </div>
+    </div>
+
+    <div class="concepts reveal">
+      <article class="concept">
+        <svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+          <path d="M3 24c4 0 5-1 7-5s3-7 6-7v12 M16 6v6 M16 24h13"/><path d="M3 12h26" stroke-dasharray="2 3"/>
+        </svg>
+        <h3><span lang="pl">Neuron: sumuj i strzelaj</span><span lang="en">Neuron: integrate and fire</span></h3>
+        <p>
+          <span lang="pl">Neuron zbiera nadchodzące impulsy jak kondensator ładunek, a zgromadzony potencjał stopniowo „wycieka”. Gdy przekroczy próg, neuron wysyła własny impuls i wraca do stanu spoczynku. To model <em>leaky integrate-and-fire</em> (LIF).</span>
+          <span lang="en">A neuron accumulates incoming spikes the way a capacitor collects charge, while the stored potential slowly leaks away. Once it crosses a threshold, the neuron emits a spike of its own and resets. This is the <em>leaky integrate-and-fire</em> (LIF) model.</span>
+        </p>
+      </article>
+      <article class="concept">
+        <svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+          <circle cx="7" cy="16" r="3.4"/><circle cx="25" cy="16" r="3.4"/><path d="M10.4 16h4 M17.6 16h4" /><path d="M14.4 12v8 M17.6 12v8"/>
+        </svg>
+        <h3><span lang="pl">Synapsa: pamięć w miejscu obliczeń</span><span lang="en">Synapse: memory where the computing is</span></h3>
+        <p>
+          <span lang="pl">Synapsa decyduje, jak mocno impuls jednego neuronu wpływa na drugi. Te wagi są pamięcią układu, a uczenie polega na ich zmianie. Nie trzeba przesyłać danych między pamięcią a procesorem — znika wąskie gardło klasycznej architektury.</span>
+          <span lang="en">A synapse sets how strongly one neuron's spike affects another. These weights are the system's memory, and learning means changing them. No data has to shuttle between memory and processor — the bottleneck of the classical architecture disappears.</span>
+        </p>
+      </article>
+      <article class="concept">
+        <svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+          <path d="M3 24h26 M7 24V9 M12 24v-6 M19 24V6 M22 24v-9 M27 24V12"/>
+        </svg>
+        <h3><span lang="pl">Czas i zdarzenia</span><span lang="en">Time and events</span></h3>
+        <p>
+          <span lang="pl">Informację niesie nie tylko to, czy neuron wysłał impuls, ale i kiedy to zrobił. Układ pracuje tylko wtedy, gdy coś się dzieje — bez zdarzeń nie zużywa energii na obliczenia. Stąd bierze się oszczędność mózgu.</span>
+          <span lang="en">Information is carried not only by whether a neuron fired, but by when. The system works only when something happens — with no events, no energy is spent on computing. This is where the brain's efficiency comes from.</span>
+        </p>
+      </article>
+      <article class="concept">
+        <svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+          <path d="M3 16c3-9 6-9 9 0s6 9 9 0 5-7 8-2"/><path d="M3 26h26"/>
+        </svg>
+        <h3><span lang="pl">Fizyka zamiast programu</span><span lang="en">Physics instead of a program</span></h3>
+        <p>
+          <span lang="pl">Neuronu nie trzeba symulować — może nim być sam układ fizyczny, jeśli ma to, czego potrzeba: nieliniowość, próg i krótką pamięć. Wtedy obliczenie wykonuje się samo, z szybkością zjawiska, które je realizuje.</span>
+          <span lang="en">A neuron need not be simulated — a physical system can be one, provided it has what it takes: nonlinearity, a threshold and short-term memory. The computation then runs by itself, at the speed of the phenomenon that implements it.</span>
+        </p>
+      </article>
+    </div>
+
+    <div class="callout reveal">
+      <h3><span lang="pl">W naszym przypadku: neuron ze światła</span><span lang="en">In our case: a neuron made of light</span></h3>
+      <p>
+        <span lang="pl">Układem, który nas szczególnie interesuje, są <strong>polarytony ekscytonowe</strong> — kwazicząstki powstające w mikrownęce optycznej, gdy foton silnie sprzęga się z ekscytonem w półprzewodniku. Po świetle dziedziczą szybkość, po materii — silne oddziaływania, czyli nieliniowość, której zwykłym fotonom brakuje. Kondensat polarytonów pobudzany impulsami lasera zachowuje się jak neuron LIF: sumuje kolejne impulsy, a po przekroczeniu progu odpowiada błyskiem — w skali pikosekund.</span>
+        <span lang="en">The system we care about most is the <strong>exciton-polariton</strong> — a quasiparticle formed in an optical microcavity when a photon couples strongly to an exciton in a semiconductor. From light it inherits speed; from matter, strong interactions — the nonlinearity plain photons lack. A polariton condensate driven by laser pulses behaves like a LIF neuron: it integrates successive pulses and, once past threshold, answers with a flash — on picosecond timescales.</span>
+      </p>
+      <p>
+        <span lang="pl">Takiej sieci nie trzeba uczyć w całości. W podejściu <strong>reservoir computing</strong> połączenia wewnątrz układu pozostają stałe: sygnał wejściowy <code>u(t)</code> wytrąca go z równowagi, a jego stan <code>x(t)</code> staje się bogatą, nieliniową reprezentacją tego, co układ ostatnio „widział”. Uczymy wyłącznie prostą warstwę odczytu <code>W_out</code>. Kluczowe pytanie brzmi więc nie „jak zoptymalizować sieć”, lecz „jaki układ fizyczny jest dobrym rezerwuarem”.</span>
+        <span lang="en">Such a network does not have to be trained end to end. In <strong>reservoir computing</strong> the connections inside the system stay fixed: the input <code>u(t)</code> perturbs it, and its state <code>x(t)</code> becomes a rich, nonlinear representation of what the system has recently “seen”. Only a simple readout layer <code>W_out</code> is trained. The key question is therefore not “how to optimise the network” but “which physical system makes a good reservoir”.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="band" id="demo">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="tag"><span lang="pl">spróbuj</span><span lang="en">try it</span></p>
+      <h2><span lang="pl">Zostań warstwą odczytu</span><span lang="en">Be the readout layer</span></h2>
+    </div>
+
+    <div class="demo-grid reveal">
+      <div>
+        <p class="lede" style="margin-top:0">
+          <span lang="pl">Rezerwuar przechowuje zanikający ślad tego, co przed chwilą zobaczył. Obserwuj impulsy wędrujące po sieci, a potem odtwórz je w tej samej kolejności — jesteś wyuczonym odczytem, który dekoduje stan, na który nie miał wpływu. Każda runda dodaje jeden krok, aż pamięć cię wyprzedzi.</span>
+          <span lang="en">A reservoir holds a fading trace of what it has just seen. Watch the spikes travel through the network, then replay them in order — you are the trained readout, decoding a state you did not shape. Each round adds one step, until the memory outruns you.</span>
+        </p>
+
+        <div class="readout">
+          <div><span lang="pl">runda</span><span lang="en">round</span> <b id="g-round">0</b></div>
+          <div><span lang="pl">pojemność pamięci</span><span lang="en">memory capacity</span> <b id="g-len">0</b></div>
+          <div><span lang="pl">rekord</span><span lang="en">best</span> <b id="g-best">0</b></div>
+        </div>
+
+        <div class="demo-actions">
+          <button class="btn btn--primary" id="g-start" type="button">Uruchom rezerwuar</button>
+          <button class="btn" id="g-replay" type="button" disabled><span lang="pl">Pokaż sekwencję ponownie</span><span lang="en">Replay the sequence</span></button>
+        </div>
+
+        <p class="demo-status" id="g-status" role="status" aria-live="polite">
+          Naciśnij start. Osiem węzłów, jedna pętla rekurencyjna, żadnego uczenia po twojej stronie.
+        </p>
+      </div>
+
+      <div class="rig" id="rig">
+        <svg class="wires" id="g-wires" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div class="rig-hud" id="g-hud"><b>spoczynek</b>rezerwuar czeka</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- ==================================================================
+     TAB: LABORATORY
+     ================================================================== -->
+<div class="panel" id="lab">
+
+<section class="band">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="tag"><span lang="pl">laboratorium</span><span lang="en">laboratory</span></p>
+      <h2><span lang="pl">Laboratorium Polarytonowe</span><span lang="en">Polariton Laboratory</span></h2>
+      <p class="lede">
+        <span lang="pl">Q-NOC działa przy Laboratorium Polarytonowym Wydziału Fizyki UW — zespole doświadczalnym, w którym światło i materia łączą się w jedną kwazicząstkę, a z kondensatów polarytonów powstają optyczne sieci neuronowe.</span>
+        <span lang="en">Q-NOC works alongside the Polariton Laboratory at the Faculty of Physics, University of Warsaw — an experimental group where light and matter merge into a single quasiparticle and polariton condensates become optical neural networks.</span>
+      </p>
+    </div>
+
+    <div class="lab-grid reveal">
+      <div class="prose">
+        <p>
+          <span lang="pl">Laboratorium Polarytonowe (znane też jako grupa <em>Polariton</em> lub <em>Laboratory of optics on plasmon and polariton structures</em>) kieruje prof. dr hab. Barbara Piętka, a współprowadzi je dr hab. Jacek Szczytko, prof. UW. Zespół należy do Zakładu Fizyki Ciała Stałego w Instytucie Fizyki Doświadczalnej i łączy fizykę ciała stałego z fotoniką.</span>
+          <span lang="en">The Polariton Laboratory (also known as the <em>Polariton</em> group or the <em>Laboratory of optics on plasmon and polariton structures</em>) is headed by Prof. Barbara Piętka and co-led by Prof. Jacek Szczytko. The team belongs to the Division of Solid State Physics at the Institute of Experimental Physics and brings solid-state physics together with photonics.</span>
+        </p>
+        <p>
+          <span lang="pl">W centrum zainteresowań są <strong>polarytony ekscytonowe</strong> w mikrownękach optycznych oraz ich nierównowagowe kondensaty Bosego-Einsteina — w półprzewodnikach, perowskitach i materiałach dwuwymiarowych. Drugim filarem są mikrownęki wypełnione ciekłym kryształem, w których fotony zachowują się jak cząstki obdarzone masą i spinem; wyniki te ukazały się w 2019 r. w czasopiśmie <a href="https://doi.org/10.1126/science.aay4182" target="_blank" rel="noopener"><em>Science</em></a>.</span>
+          <span lang="en">The focus is on <strong>exciton-polaritons</strong> in optical microcavities and their non-equilibrium Bose-Einstein condensates — in semiconductors, perovskites and two-dimensional materials. The second pillar is liquid-crystal-filled microcavities, in which photons behave like particles with mass and spin; these results appeared in <a href="https://doi.org/10.1126/science.aay4182" target="_blank" rel="noopener"><em>Science</em></a> in 2019.</span>
+        </p>
+        <p>
+          <span lang="pl">Dla naszej grupy najważniejszy jest trzeci nurt: <strong>neuromorficzne obliczenia na polarytonach</strong>. Silna nieliniowość polarytonów pozwala budować optyczne neurony i całe sieci neuronowe, które przetwarzają impulsy światła w skali pikosekund — od bramek logicznych i klasyfikacji obrazów po neurony impulsowe i sieci działające w temperaturze pokojowej.</span>
+          <span lang="en">For our group the third strand matters most: <strong>neuromorphic computing with polaritons</strong>. The strong polariton nonlinearity makes it possible to build optical neurons and whole neural networks that process light pulses on picosecond timescales — from logic gates and image classification to spiking neurons and networks operating at room temperature.</span>
+        </p>
+      </div>
+
+      <dl class="facts">
+        <div>
+          <dt><span lang="pl">Kierownictwo</span><span lang="en">Led by</span></dt>
+          <dd>prof. dr hab. Barbara Piętka<br>dr hab. Jacek Szczytko, prof. UW</dd>
+        </div>
+        <div>
+          <dt><span lang="pl">Jednostka</span><span lang="en">Unit</span></dt>
+          <dd>
+            <span lang="pl">Zakład Fizyki Ciała Stałego<br>Instytut Fizyki Doświadczalnej<br>Wydział Fizyki, Uniwersytet Warszawski</span>
+            <span lang="en">Division of Solid State Physics<br>Institute of Experimental Physics<br>Faculty of Physics, University of Warsaw</span>
+          </dd>
+        </div>
+        <div>
+          <dt><span lang="pl">Adres</span><span lang="en">Address</span></dt>
+          <dd>ul. Ludwika Pasteura 5<br>02-093 Warszawa</dd>
+        </div>
+        <div>
+          <dt><span lang="pl">Strona laboratorium</span><span lang="en">Lab website</span></dt>
+          <dd><a href="http://polariton.fuw.edu.pl/" target="_blank" rel="noopener">polariton.fuw.edu.pl ↗</a></dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="sub-head reveal">
+      <h3><span lang="pl">Główne obszary badań</span><span lang="en">Main research areas</span></h3>
+    </div>
+
+    <div class="bay bay--3 reveal">
+      <article class="node-card" tabindex="0">
+        <span class="idx">01</span>
+        <h3><span lang="pl">Kondensaty polarytonów</span><span lang="en">Polariton condensates</span></h3>
+        <p><span lang="pl">Nierównowagowa kondensacja Bosego-Einsteina polarytonów ekscytonowych w mikrownękach półprzewodnikowych, także w polu magnetycznym.</span><span lang="en">Non-equilibrium Bose-Einstein condensation of exciton-polaritons in semiconductor microcavities, including in magnetic fields.</span></p>
+      </article>
+      <article class="node-card" tabindex="0">
+        <span class="idx">02</span>
+        <h3><span lang="pl">Polarytonowe sieci neuronowe</span><span lang="en">Polariton neural networks</span></h3>
+        <p><span lang="pl">Neurony optyczne, reservoir computing i akceleratory sztucznej inteligencji oparte na nieliniowości polarytonów.</span><span lang="en">Optical neurons, reservoir computing and AI accelerators built on the polariton nonlinearity.</span></p>
+      </article>
+      <article class="node-card" tabindex="0">
+        <span class="idx">03</span>
+        <h3><span lang="pl">Mikrownęki ciekłokrystaliczne</span><span lang="en">Liquid-crystal microcavities</span></h3>
+        <p><span lang="pl">Elektrycznie strojone wnęki, w których realizuje się sprzężenie spin-orbita światła i syntetyczne hamiltoniany.</span><span lang="en">Electrically tunable cavities that realise spin-orbit coupling of light and synthetic Hamiltonians.</span></p>
+      </article>
+      <article class="node-card" tabindex="0">
+        <span class="idx">04</span>
+        <h3><span lang="pl">Perowskity i materiały 2D</span><span lang="en">Perovskites and 2D materials</span></h3>
+        <p><span lang="pl">Kryształy perowskitów i monowarstwy dichalkogenków metali przejściowych we wnękach — polarytony w temperaturze pokojowej.</span><span lang="en">Perovskite crystals and transition-metal dichalcogenide monolayers in cavities — polaritons at room temperature.</span></p>
+      </article>
+      <article class="node-card" tabindex="0">
+        <span class="idx">05</span>
+        <h3><span lang="pl">Topologiczne stany światła</span><span lang="en">Topological states of light</span></h3>
+        <p><span lang="pl">Krzywizna Berry'ego, punkty wyjątkowe i tekstury polaryzacji w strukturach fotonicznych.</span><span lang="en">Berry curvature, exceptional points and polarization textures in photonic structures.</span></p>
+      </article>
+      <article class="node-card" tabindex="0">
+        <span class="idx">06</span>
+        <h3><span lang="pl">Spektroskopia optyczna</span><span lang="en">Optical spectroscopy</span></h3>
+        <p><span lang="pl">Pomiary emisji rozdzielone w kącie, polaryzacji i czasie, z pobudzaniem ultrakrótkimi impulsami laserowymi.</span><span lang="en">Angle-, polarization- and time-resolved emission measurements under ultrashort laser pulse excitation.</span></p>
+      </article>
+    </div>
+
+    <div class="sub-head reveal">
+      <h3><span lang="pl">Projekty i wybrane wyniki</span><span lang="en">Projects and selected results</span></h3>
+    </div>
+
+    <ul class="feed reveal">
+      <li><a href="https://cordis.europa.eu/project/id/101130304" target="_blank" rel="noopener">
+        <span class="when">2024–2028</span>
+        <span class="kind">EIC Pathfinder</span>
+        <div class="txt">
+          <h3>PolArt — Neuromorphic Polariton Accelerator</h3>
+          <p><span lang="pl">Europejski projekt kierowany przez prof. Barbarę Piętkę: polarytonowe sieci neuronowe jako optyczne akceleratory sztucznej inteligencji.</span><span lang="en">A European project led by Prof. Barbara Piętka: polariton neural networks as optical accelerators for artificial intelligence.</span></p>
+        </div>
+        <span class="go" aria-hidden="true">↗</span>
+      </a></li>
+      <li><a href="https://cordis.europa.eu/project/id/964770" target="_blank" rel="noopener">
+        <span class="when">2021–2025</span>
+        <span class="kind">Horizon 2020 FET-Open</span>
+        <div class="txt">
+          <h3>TopoLight</h3>
+          <p><span lang="pl">Projekt koordynowany przez prof. Jacka Szczytko: ciekłe kryształy jako platforma dla nieliniowych, topologicznych stanów światła.</span><span lang="en">A project coordinated by Prof. Jacek Szczytko: liquid crystals as a platform for nonlinear topological states of light.</span></p>
+        </div>
+        <span class="go" aria-hidden="true">↗</span>
+      </a></li>
+      <li><a href="https://arxiv.org/abs/2412.10865" target="_blank" rel="noopener">
+        <span class="when">2024</span>
+        <span class="kind"><span lang="pl">publikacja</span><span lang="en">paper</span></span>
+        <div class="txt">
+          <h3><span lang="pl">Polarytonowa sieć neuronowa w temperaturze pokojowej</span><span lang="en">A room-temperature polariton neural network</span></h3>
+          <p><span lang="pl">Sieć neuronowa oparta na kondensacji polarytonów w falowodzie z kryształu perowskitu, sprawdzona w zadaniach klasyfikacji i detekcji obiektów.</span><span lang="en">A neural network based on polariton condensation in a perovskite crystal waveguide, tested on classification and object detection tasks.</span></p>
+        </div>
+        <span class="go" aria-hidden="true">↗</span>
+      </a></li>
+      <li><a href="https://doi.org/10.1126/science.aay4182" target="_blank" rel="noopener">
+        <span class="when">2019</span>
+        <span class="kind">Science</span>
+        <div class="txt">
+          <h3>Photonic engineering of spin-orbit synthetic Hamiltonians in liquid crystal cavities</h3>
+          <p><span lang="pl">Fotony uwięzione we wnęce z ciekłym kryształem zachowują się jak cząstki z masą i momentem magnetycznym — praca wykonana we współpracy z Wojskową Akademią Techniczną.</span><span lang="en">Photons trapped in a liquid-crystal cavity behave like particles with mass and a magnetic moment — work carried out with the Military University of Technology in Warsaw.</span></p>
+        </div>
+        <span class="go" aria-hidden="true">↗</span>
+      </a></li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<!-- ==================================================================
+     TAB: PEOPLE
+     ================================================================== -->
+<div class="panel" id="people">
+
+<section class="band">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="tag"><span lang="pl">ludzie</span><span lang="en">people</span></p>
+      <h2><span lang="pl">Ludzie stojący za rezerwuarem</span><span lang="en">The people behind the reservoir</span></h2>
+      <p class="lede">
+        <span lang="pl">Niewielki zespół z Wydziału Fizyki Uniwersytetu Warszawskiego.</span>
+        <span lang="en">A small group at the Faculty of Physics, University of Warsaw.</span>
+      </p>
     </div>
 
     <div class="reveal">
       <article class="supervisor">
         <div class="avatar" aria-hidden="true">BP</div>
         <div class="who">
-          <h3>dr hab. Barbara Pi&#281;tka, prof. UW</h3>
-          <p class="role">Faculty supervisor &middot; Faculty of Physics, University of Warsaw</p>
-          <p class="int">Exciton-polariton condensates and light&ndash;matter interaction; polariton systems as a route from condensed matter physics to neural-network-like computation.</p>
+          <h3>prof. dr hab. Barbara Pi&#281;tka</h3>
+          <p class="role"><span lang="pl">Opieka naukowa &middot; kierownik Laboratorium Polarytonowego, Wydział Fizyki UW</span><span lang="en">Faculty supervisor &middot; head of the Polariton Laboratory, Faculty of Physics UW</span></p>
+          <p class="int">
+            <span lang="pl">Kondensaty polarytonów ekscytonowych i oddziaływanie światła z materią; układy polarytonowe jako droga od fizyki ciała stałego do optycznych sieci neuronowych.</span>
+            <span lang="en">Exciton-polariton condensates and light&ndash;matter interaction; polariton systems as a route from condensed matter physics to optical neural networks.</span>
+          </p>
         </div>
         <div class="supervisor-links">
-          <a class="link-mono" href="https://www.fuw.edu.pl/" rel="noopener" target="_blank">fuw.edu.pl &#8599;</a>
+          <a class="link-mono" href="#lab"><span lang="pl">Laboratorium</span><span lang="en">Laboratory</span> &rarr;</a>
           <a class="link-mono" href="https://pl.linkedin.com/in/barbara-pietka-6931096" rel="noopener" target="_blank">LinkedIn &#8599;</a>
         </div>
       </article>
@@ -1144,8 +616,14 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
         <div class="avatar" aria-hidden="true">AO</div>
         <div class="who">
           <h3>dr Andrzej Opala</h3>
-          <p class="role">Faculty of Physics, University of Warsaw</p>
-          <p class="int">research interests — to fill in</p>
+          <p class="role"><span lang="pl">Wydział Fizyki, Uniwersytet Warszawski</span><span lang="en">Faculty of Physics, University of Warsaw</span></p>
+          <p class="int">
+            <span lang="pl">Fizyka materii skondensowanej, kondensaty polarytonów ekscytonowych i efekty nieliniowe; reservoir computing oraz polarytonowe sieci neuronowe — od kwantowych rezerwuarów po neurony impulsowe.</span>
+            <span lang="en">Condensed matter physics, exciton-polariton condensates and nonlinear effects; reservoir computing and polariton neural networks — from quantum reservoirs to spiking neurons.</span>
+          </p>
+        </div>
+        <div class="supervisor-links">
+          <a class="link-mono" href="https://scholar.google.com/citations?user=E8i_bA4AAAAJ" rel="noopener" target="_blank">Google Scholar &#8599;</a>
         </div>
       </article>
     </div>
@@ -1154,45 +632,120 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
       <article class="person">
         <div class="avatar" aria-hidden="true">AL</div>
         <h3>Artur Laskowski</h3>
-        <p class="role">MSc student &middot; 2nd year</p>
-        <p class="int">research interests — to fill in</p>
+        <p class="role"><span lang="pl">studia magisterskie &middot; II rok</span><span lang="en">MSc student &middot; 2nd year</span></p>
+        <div class="socials">
+          <a href="https://www.facebook.com/profile.php?id=100006713746394" target="_blank" rel="noopener" aria-label="Artur Laskowski — Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.5V21h3Z"/></svg></a>
+        </div>
       </article>
       <article class="person">
         <div class="avatar" aria-hidden="true">MK</div>
         <h3>Maja Kalinowska</h3>
-        <p class="role">MSc student &middot; 2nd year</p>
-        <p class="int">research interests — to fill in</p>
+        <p class="role"><span lang="pl">studia magisterskie &middot; II rok</span><span lang="en">MSc student &middot; 2nd year</span></p>
+        <div class="socials">
+          <a href="https://www.facebook.com/profile.php?id=100015296371582" target="_blank" rel="noopener" aria-label="Maja Kalinowska — Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.5V21h3Z"/></svg></a>
+        </div>
       </article>
       <article class="person">
         <div class="avatar" aria-hidden="true">SG</div>
         <h3>Sara Ga&#322;an</h3>
-        <p class="role">MSc student &middot; 2nd year</p>
-        <p class="int">research interests — to fill in</p>
+        <p class="role"><span lang="pl">studia magisterskie &middot; II rok</span><span lang="en">MSc student &middot; 2nd year</span></p>
+        <div class="socials">
+          <a href="https://www.facebook.com/profile.php?id=100014995213969" target="_blank" rel="noopener" aria-label="Sara Gałan — Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.5V21h3Z"/></svg></a>
+        </div>
+      </article>
+      <article class="person">
+        <div class="avatar" aria-hidden="true">GJ</div>
+        <h3>Grzegorz J&#281;drzejowski</h3>
+        <p class="role"><span lang="pl">zespół Q-NOC</span><span lang="en">Q-NOC team</span></p>
+        <div class="socials">
+          <a href="https://www.facebook.com/g.jedrzejowsk" target="_blank" rel="noopener" aria-label="Grzegorz Jędrzejowski — Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.5V21h3Z"/></svg></a>
+        </div>
       </article>
       <article class="person">
         <div class="avatar" aria-hidden="true">AG</div>
         <h3>Alicja G&#322;aszczka</h3>
-        <p class="role">PhD student</p>
-        <p class="int">research interests — to fill in</p>
+        <p class="role"><span lang="pl">studia doktoranckie</span><span lang="en">PhD student</span></p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- ============ JOIN ============ -->
-<section class="join band" id="join">
+</div>
+
+<!-- ==================================================================
+     TAB: NEWS
+     ================================================================== -->
+<div class="panel" id="news">
+
+<section class="band">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="tag"><span lang="pl">aktualności i wydarzenia</span><span lang="en">news &amp; events</span></p>
+      <h2><span lang="pl">Co słychać w grupie</span><span lang="en">Latest from the group</span></h2>
+    </div>
+
+    <!-- placeholders: add href="…" to an entry once it has somewhere to point -->
+    <ul class="feed reveal">
+      <li><a>
+        <span class="when">—</span>
+        <span class="kind"><span lang="pl">spotkanie</span><span lang="en">meeting</span></span>
+        <div class="txt">
+          <h3><span lang="pl">Najbliższe spotkanie — do uzupełnienia</span><span lang="en">Upcoming meeting — placeholder</span></h3>
+          <p><span lang="pl">Tu pojawią się data, sala i plan spotkania.</span><span lang="en">Date, room and agenda go here.</span></p>
+        </div>
+        <span class="go" aria-hidden="true">→</span>
+      </a></li>
+      <li><a>
+        <span class="when">—</span>
+        <span class="kind"><span lang="pl">warsztaty</span><span lang="en">workshop</span></span>
+        <div class="txt">
+          <h3><span lang="pl">Warsztaty — do uzupełnienia</span><span lang="en">Workshop — placeholder</span></h3>
+          <p><span lang="pl">Temat zajęć praktycznych i link do zapisów.</span><span lang="en">Hands-on session topic and sign-up link go here.</span></p>
+        </div>
+        <span class="go" aria-hidden="true">→</span>
+      </a></li>
+      <li><a>
+        <span class="when">—</span>
+        <span class="kind"><span lang="pl">wyniki</span><span lang="en">research update</span></span>
+        <div class="txt">
+          <h3><span lang="pl">Postępy w badaniach — do uzupełnienia</span><span lang="en">Research update — placeholder</span></h3>
+          <p><span lang="pl">Krótka notatka o tym, co udało się ustalić w tym miesiącu.</span><span lang="en">Short note on what a project team found this month.</span></p>
+        </div>
+        <span class="go" aria-hidden="true">→</span>
+      </a></li>
+      <li><a>
+        <span class="when">—</span>
+        <span class="kind"><span lang="pl">konferencja</span><span lang="en">conference</span></span>
+        <div class="txt">
+          <h3><span lang="pl">Konferencja — do uzupełnienia</span><span lang="en">Conference — placeholder</span></h3>
+          <p><span lang="pl">Gdzie członkowie grupy występują lub biorą udział.</span><span lang="en">Where members are presenting or attending.</span></p>
+        </div>
+        <span class="go" aria-hidden="true">→</span>
+      </a></li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<!-- ==================================================================
+     TAB: JOIN
+     ================================================================== -->
+<div class="panel" id="join">
+
+<section class="join band">
   <div class="wrap">
     <div class="reveal">
-      <p class="tag">join us</p>
-      <h2>Build something that thinks in dynamics.</h2>
-      <p class="lede">Interested in neuromorphic computing, unconventional AI, electronics or computational neuroscience? Join us.</p>
+      <p class="tag"><span lang="pl">dołącz</span><span lang="en">join us</span></p>
+      <h2><span lang="pl">Zbuduj coś, co myśli dynamiką.</span><span lang="en">Build something that thinks in dynamics.</span></h2>
+      <p class="lede">
+        <span lang="pl">Interesują cię obliczenia neuromorficzne, niekonwencjonalna sztuczna inteligencja, optyka, elektronika lub neuronauka obliczeniowa? Dołącz do nas.</span>
+        <span lang="en">Interested in neuromorphic computing, unconventional AI, optics, electronics or computational neuroscience? Join us.</span>
+      </p>
       <div class="contact">
-        <a href="mailto:q-noc@fuw.edu.pl"><span class="k">email</span> q-noc@fuw.edu.pl</a>
+        <a href="mailto:q-noc@fuw.edu.pl"><span class="k">e-mail</span> q-noc@fuw.edu.pl</a>
         <a href="https://github.com/q-noc" target="_blank" rel="noopener"><span class="k">github</span> q-noc</a>
-        <span class="soon"><span class="k">discord</span> coming soon</span>
-      </div>
-      <div class="hero-actions">
-        <a class="btn btn--primary" href="#apply">Join Q-NOC →</a>
+        <span class="soon"><span class="k">discord</span> <span lang="pl">wkrótce</span><span lang="en">coming soon</span></span>
       </div>
     </div>
 
@@ -1201,76 +754,36 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_captcha" value="false">
       <div class="field">
-        <label for="f-name">name</label>
-        <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+        <label for="f-name"><span lang="pl">imię i nazwisko</span><span lang="en">name</span></label>
+        <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Imię i nazwisko" data-i18n-attr="placeholder" data-pl="Imię i nazwisko" data-en="Your name" required>
       </div>
       <div class="field">
-        <label for="f-mail">email</label>
-        <input id="f-mail" name="email" type="email" autocomplete="email" placeholder="you@student.uw.edu.pl" required>
+        <label for="f-mail">e-mail</label>
+        <input id="f-mail" name="email" type="email" autocomplete="email" placeholder="ty@student.uw.edu.pl" data-i18n-attr="placeholder" data-pl="ty@student.uw.edu.pl" data-en="you@student.uw.edu.pl" required>
       </div>
       <div class="field">
-        <label for="f-int">what pulls you in</label>
+        <label for="f-int"><span lang="pl">co cię wciąga</span><span lang="en">what pulls you in</span></label>
         <select id="f-int" name="interest">
-          <option>Reservoir computing</option>
-          <option>Spiking neural networks</option>
-          <option>Neuromorphic hardware</option>
-          <option>Electronics / analog</option>
-          <option>Computational neuroscience</option>
-          <option>Still deciding</option>
+          <option value="Reservoir computing" data-pl="Reservoir computing" data-en="Reservoir computing">Reservoir computing</option>
+          <option value="Spiking neural networks" data-pl="Impulsowe sieci neuronowe" data-en="Spiking neural networks">Impulsowe sieci neuronowe</option>
+          <option value="Optical / polariton computing" data-pl="Obliczenia optyczne i polarytony" data-en="Optical / polariton computing">Obliczenia optyczne i polarytony</option>
+          <option value="Neuromorphic hardware" data-pl="Sprzęt neuromorficzny" data-en="Neuromorphic hardware">Sprzęt neuromorficzny</option>
+          <option value="Electronics / analog" data-pl="Elektronika / układy analogowe" data-en="Electronics / analog">Elektronika / układy analogowe</option>
+          <option value="Computational neuroscience" data-pl="Neuronauka obliczeniowa" data-en="Computational neuroscience">Neuronauka obliczeniowa</option>
+          <option value="Still deciding" data-pl="Jeszcze nie wiem" data-en="Still deciding">Jeszcze nie wiem</option>
         </select>
       </div>
       <div class="field">
-        <label for="f-msg">anything you have already built or read</label>
-        <textarea id="f-msg" name="message" placeholder="A course, a project, a paper that stuck with you."></textarea>
+        <label for="f-msg"><span lang="pl">co już udało ci się zbudować lub przeczytać</span><span lang="en">anything you have already built or read</span></label>
+        <textarea id="f-msg" name="message" placeholder="Kurs, projekt, artykuł, który utkwił ci w pamięci." data-i18n-attr="placeholder" data-pl="Kurs, projekt, artykuł, który utkwił ci w pamięci." data-en="A course, a project, a paper that stuck with you."></textarea>
       </div>
-      <button class="btn btn--primary" type="submit" style="width:100%">Send application</button>
-      <p class="form-note" id="form-note">We'll get back to you by email.</p>
+      <button class="btn btn--primary" type="submit" style="width:100%"><span lang="pl">Wyślij zgłoszenie</span><span lang="en">Send application</span></button>
+      <p class="form-note" id="form-note">Odpowiemy mailowo.</p>
     </form>
   </div>
 </section>
 
-<!-- ============ NEWS ============ -->
-<section class="band" id="events">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <p class="tag">news &amp; events</p>
-      <h2>Latest from the group</h2>
-    </div>
-
-    <ul class="feed reveal">
-      <li><a href="#">
-        <span class="when">—</span>
-        <span class="kind">meeting</span>
-        <span class="txt"><h3>Upcoming meeting — placeholder</h3><p>Date, room and agenda go here.</p></span>
-        <span class="go" aria-hidden="true">→</span>
-      </a></li>
-      <li><a href="#">
-        <span class="when">—</span>
-        <span class="kind">workshop</span>
-        <span class="txt"><h3>Workshop — placeholder</h3><p>Hands-on session topic and sign-up link go here.</p></span>
-        <span class="go" aria-hidden="true">→</span>
-      </a></li>
-      <li><a href="#">
-        <span class="when">—</span>
-        <span class="kind">research update</span>
-        <span class="txt"><h3>Research update — placeholder</h3><p>Short note on what a project team found this month.</p></span>
-        <span class="go" aria-hidden="true">→</span>
-      </a></li>
-      <li><a href="#">
-        <span class="when">—</span>
-        <span class="kind">hackathon</span>
-        <span class="txt"><h3>Hackathon — placeholder</h3><p>Theme, dates and team sign-up go here.</p></span>
-        <span class="go" aria-hidden="true">→</span>
-      </a></li>
-      <li><a href="#">
-        <span class="when">—</span>
-        <span class="kind">conference</span>
-        <span class="txt"><h3>Conference — placeholder</h3><p>Where members are presenting or attending.</p></span>
-        <span class="go" aria-hidden="true">→</span>
-      </a></li>
-    </ul>
-  </div>
-</section>
+</div>
 
 </main>
 
@@ -1278,527 +791,39 @@ footer .tagline{ color: var(--ink-3); font-size: 14px; margin: 14px 0 0; max-wid
   <div class="wrap">
     <div class="foot-grid">
       <div class="brand-block">
-        <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Q-NOC</a>
-        <p class="tagline">Quantum Neuromorphic Optical Computing — student research group at the Faculty of Physics, University of Warsaw.</p>
+        <a class="brand" href="#start"><span class="dot" aria-hidden="true"></span>Q-NOC</a>
+        <p class="tagline">
+          <span lang="pl">Quantum Neuromorphic Optical Computing — studencka grupa badawcza na Wydziale Fizyki Uniwersytetu Warszawskiego.</span>
+          <span lang="en">Quantum Neuromorphic Optical Computing — student research group at the Faculty of Physics, University of Warsaw.</span>
+        </p>
       </div>
       <div class="foot-col">
-        <h4>the group</h4>
+        <h4><span lang="pl">grupa</span><span lang="en">the group</span></h4>
         <ul>
-          <li><a href="#research">Research</a></li>
-          <li><a href="#demo">Play the reservoir</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#people">People</a></li>
-          <li><a href="#events">Events</a></li>
+          <li><a href="#research"><span lang="pl">Badania</span><span lang="en">Research</span></a></li>
+          <li><a href="#how"><span lang="pl">Jak to działa</span><span lang="en">How it works</span></a></li>
+          <li><a href="#demo"><span lang="pl">Zagraj z rezerwuarem</span><span lang="en">Play the reservoir</span></a></li>
+          <li><a href="#projects"><span lang="pl">Projekty</span><span lang="en">Projects</span></a></li>
+          <li><a href="#lab"><span lang="pl">Laboratorium</span><span lang="en">Laboratory</span></a></li>
+          <li><a href="#people"><span lang="pl">Ludzie</span><span lang="en">People</span></a></li>
         </ul>
       </div>
       <div class="foot-col">
-        <h4>get in touch</h4>
+        <h4><span lang="pl">kontakt</span><span lang="en">get in touch</span></h4>
         <ul>
-          <li><a href="#join">Join us</a></li>
+          <li><a href="#join"><span lang="pl">Dołącz do nas</span><span lang="en">Join us</span></a></li>
           <li><a href="https://github.com/q-noc" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="mailto:q-noc@fuw.edu.pl">Contact</a></li>
+          <li><a href="mailto:q-noc@fuw.edu.pl">q-noc@fuw.edu.pl</a></li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Q-NOC · University of Warsaw</span>
-      <span>what if the computer didn't compute the way computers normally do?</span>
+      <span>© 2026 Q-NOC · <span lang="pl">Uniwersytet Warszawski</span><span lang="en">University of Warsaw</span></span>
+      <span><span lang="pl">a gdyby komputer nie liczył tak, jak zwykle liczą komputery?</span><span lang="en">what if the computer didn't compute the way computers normally do?</span></span>
     </div>
   </div>
 </footer>
 
-<script>
-(function(){
-  "use strict";
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ---------- mobile menu ---------- */
-  var nav = document.getElementById('nav');
-  var burger = document.getElementById('burger');
-  var links = document.getElementById('nav-links');
-
-  function setMenu(open){
-    nav.dataset.open = open ? 'true' : 'false';
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-  }
-  burger.addEventListener('click', function(){ setMenu(nav.dataset.open !== 'true'); });
-  links.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setMenu(false); });
-
-  /* ---------- sticky nav border ---------- */
-  var onScroll = function(){ nav.dataset.stuck = window.scrollY > 8 ? 'true' : 'false'; };
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive:true });
-
-  /* ---------- scrollspy ---------- */
-  var navAnchors = Array.prototype.slice.call(links.querySelectorAll('a[href^="#"]'));
-  var sections = navAnchors.map(function(a){ return document.querySelector(a.getAttribute('href')); });
-  if ('IntersectionObserver' in window){
-    var spy = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(!en.isIntersecting) return;
-        navAnchors.forEach(function(a, i){
-          if(sections[i] === en.target) a.setAttribute('aria-current','true');
-          else a.removeAttribute('aria-current');
-        });
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    sections.forEach(function(s){ if(s) spy.observe(s); });
-  }
-
-  /* ---------- scroll reveal ---------- */
-  var revealables = document.querySelectorAll('.reveal');
-  if (reduce || !('IntersectionObserver' in window)){
-    revealables.forEach(function(el){ el.classList.add('in'); });
-  } else {
-    var ro = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.isIntersecting){ en.target.classList.add('in'); ro.unobserve(en.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    revealables.forEach(function(el){ ro.observe(el); });
-  }
-
-  /* ---------- hero spike-train trace ---------- */
-  (function(){
-    var p = document.getElementById('trace-path');
-    if(!p) return;
-    var d = 'M0 22', x = 0;
-    while (x < 420){
-      var gap = 8 + Math.random()*36;
-      x += gap;
-      if (x > 418) break;
-      var h = 6 + Math.random()*13;
-      d += ' L' + x.toFixed(1) + ' 22 L' + x.toFixed(1) + ' ' + (22-h).toFixed(1) +
-           ' L' + (x+1.4).toFixed(1) + ' ' + (22-h).toFixed(1) + ' L' + (x+1.4).toFixed(1) + ' 22';
-      x += 1.4;
-    }
-    p.setAttribute('d', d + ' L420 22');
-  })();
-
-  /* ---------- project raster plots (spike rasters as cover art) ---------- */
-  (function(){
-    function mulberry(seed){
-      return function(){
-        seed |= 0; seed = seed + 0x6D2B79F5 | 0;
-        var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
-        t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-        return ((t ^ t >>> 14) >>> 0) / 4294967296;
-      };
-    }
-    document.querySelectorAll('[data-raster]').forEach(function(box){
-      var rnd = mulberry(parseInt(box.dataset.raster, 10) * 9871);
-      var rows = 14, W = 320, H = 140, pad = 10;
-      var out = '<svg viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">';
-      for (var r = 0; r < rows; r++){
-        var y = pad + r * ((H - 2*pad) / (rows - 1));
-        var burst = rnd();
-        for (var x = pad; x < W - pad; x += 3 + rnd()*7){
-          var local = 0.10 + 0.5 * Math.pow(Math.sin((x/W)*Math.PI*2 + burst*6) * 0.5 + 0.5, 3);
-          if (rnd() < local){
-            var op = (0.25 + rnd()*0.6).toFixed(2);
-            out += '<rect x="'+x.toFixed(1)+'" y="'+(y-2.6).toFixed(1)+'" width="1.3" height="5.2" fill="#2454ff" opacity="'+op+'"/>';
-          }
-        }
-      }
-      out += '</svg>';
-      box.innerHTML = out;
-    });
-  })();
-
-  /* ---------- form ---------- */
-  var form = document.getElementById('apply');
-  var note = document.getElementById('form-note');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var btn = form.querySelector('button[type="submit"]');
-    btn.disabled = true;
-    note.dataset.state = 'sending';
-    note.textContent = 'Sending…';
-    fetch('https://formsubmit.co/ajax/alaskowski3.14@gmail.com', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: new FormData(form)
-    }).then(function(r){ if (!r.ok) throw new Error(); return r.json(); })
-      .then(function(){
-        note.dataset.state = 'ok';
-        note.textContent = 'Thanks — your application was sent.';
-        form.reset();
-      })
-      .catch(function(){
-        note.dataset.state = 'error';
-        note.textContent = 'Something went wrong — please email q-noc@fuw.edu.pl directly instead.';
-      })
-      .finally(function(){ btn.disabled = false; });
-  });
-
-  /* ============================================================
-     DEMO — "Be the readout layer"
-     The reservoir fires a spike sequence; the player replays it.
-     Each cleared round is one more step of fading memory.
-     ============================================================ */
-  (function(){
-    var rig = document.getElementById('rig');
-    if (!rig) return;
-
-    var N = 8, R = 36;                       // ring of 8 nodes, radius in % of the rig
-    var cells = [], seq = [], input = [];
-    var best = 0, playing = false, accepting = false, timers = [];
-
-    var elRound  = document.getElementById('g-round');
-    var elLen    = document.getElementById('g-len');
-    var elBest   = document.getElementById('g-best');
-    var elStatus = document.getElementById('g-status');
-    var elStart  = document.getElementById('g-start');
-    var elReplay = document.getElementById('g-replay');
-    var elHud    = document.getElementById('g-hud');
-    var wires    = document.getElementById('g-wires');
-
-    var pos = [];
-    for (var i = 0; i < N; i++){
-      var a = -Math.PI / 2 + i * (Math.PI * 2 / N);
-      pos.push({ x: 50 + Math.cos(a) * R, y: 50 + Math.sin(a) * R });
-    }
-
-    // recurrent-looking wiring: ring + skip connections
-    var ns = 'http://www.w3.org/2000/svg', wireFrag = '';
-    for (var i = 0; i < N; i++){
-      var j = (i + 1) % N, k = (i + 3) % N;
-      wireFrag += '<line x1="'+pos[i].x+'" y1="'+pos[i].y+'" x2="'+pos[j].x+'" y2="'+pos[j].y+'"/>';
-      if (i % 2 === 0) wireFrag += '<line x1="'+pos[i].x+'" y1="'+pos[i].y+'" x2="'+pos[k].x+'" y2="'+pos[k].y+'"/>';
-    }
-    wires.innerHTML = wireFrag;
-
-    for (var i = 0; i < N; i++){
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'cell';
-      b.style.left = pos[i].x + '%';
-      b.style.top = pos[i].y + '%';
-      b.textContent = 'n' + i;
-      b.setAttribute('aria-label', 'Reservoir node ' + i);
-      b.disabled = true;
-      b.dataset.i = i;
-      b.addEventListener('click', onPick);
-      rig.appendChild(b);
-      cells.push(b);
-    }
-
-    function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
-    function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
-    function hud(a, b){ elHud.innerHTML = '<b>' + a + '</b>' + b; }
-    function setEnabled(on){ cells.forEach(function(c){ c.disabled = !on; }); }
-
-    function fire(i, bad, ms){
-      cells[i].dataset.fire = bad ? 'bad' : '1';
-      later(function(){ delete cells[i].dataset.fire; }, ms || 330);
-    }
-
-    function play(){
-      accepting = false;
-      setEnabled(false);
-      elReplay.disabled = true;
-      hud('running', 'watch the spikes');
-      elStatus.textContent = 'The reservoir is firing. Hold the order in your own fading memory.';
-      var gap = Math.max(260, 620 - seq.length * 26);
-      seq.forEach(function(n, idx){
-        later(function(){ fire(n, false, gap * 0.62); }, idx * gap + 420);
-      });
-      later(function(){
-        accepting = true;
-        input = [];
-        setEnabled(true);
-        elReplay.disabled = false;
-        hud('read out', 'your turn');
-        elStatus.textContent = 'Now replay the sequence — ' + seq.length + ' step' + (seq.length > 1 ? 's' : '') + '.';
-      }, seq.length * gap + 520);
-    }
-
-    function nextRound(){
-      // avoid immediate repeats so the sequence stays readable
-      var last = seq[seq.length - 1];
-      var n; do { n = (Math.random() * N) | 0; } while (n === last && N > 1);
-      seq.push(n);
-      elRound.textContent = seq.length;
-      elLen.textContent = seq.length;
-      play();
-    }
-
-    function onPick(e){
-      if (!accepting) return;
-      var i = parseInt(e.currentTarget.dataset.i, 10);
-      var step = input.length;
-      if (seq[step] === i){
-        fire(i, false, 240);
-        input.push(i);
-        if (input.length === seq.length){
-          accepting = false;
-          setEnabled(false);
-          elReplay.disabled = true;
-          if (seq.length > best){
-            best = seq.length;
-            elBest.textContent = best;
-          }
-          hud('match', 'state recovered');
-          elStatus.textContent = 'Recovered. The reservoir extends the sequence by one.';
-          later(nextRound, 900);
-        }
-      } else {
-        fire(i, true, 700);
-        accepting = false;
-        playing = false;
-        setEnabled(false);
-        elReplay.disabled = true;
-        hud('decayed', 'memory lost');
-        elStatus.textContent = 'That state had already decayed. You held ' + (seq.length - 1) +
-          ' step' + (seq.length - 1 === 1 ? '' : 's') + ' of memory — real reservoirs fade the same way. Run it again.';
-        elStart.textContent = 'Run it again';
-        seq = [];
-        elRound.textContent = '0';
-      }
-    }
-
-    elStart.addEventListener('click', function(){
-      clearTimers();
-      seq = []; input = []; playing = true;
-      elStart.textContent = 'Restart';
-      elLen.textContent = '0';
-      nextRound();
-    });
-
-    elReplay.addEventListener('click', function(){
-      if (!playing || !seq.length) return;
-      clearTimers();
-      play();
-    });
-  })();
-
-  /* ============================================================
-     RESERVOIR VISUALISATION
-     Fixed sparse recurrent topology, drifting nodes,
-     spikes propagating hop by hop along the edges.
-     ============================================================ */
-  var canvas = document.getElementById('reservoir');
-  var ctx = canvas.getContext('2d', { alpha: true });
-  var nodes = [], edges = [], adj = [], pulses = [];
-  var W = 0, H = 0, dpr = 1, raf = null, last = 0, seedTimer = 0, visible = true;
-
-  function count(){
-    var w = window.innerWidth;
-    if (w < 560) return 26;
-    if (w < 1024) return 38;
-    return 56;
-  }
-
-  function build(){
-    var n = count();
-    nodes = [];
-    for (var i = 0; i < n; i++){
-      // sunflower-ish placement keeps density even without clumping
-      var a = i * 2.39996, r = Math.sqrt((i + 0.6) / n);
-      var jx = (Math.random() - 0.5) * 0.07, jy = (Math.random() - 0.5) * 0.07;
-      nodes.push({
-        ax: 0.5 + (Math.cos(a) * r * 0.46) + jx,
-        ay: 0.5 + (Math.sin(a) * r * 0.46) + jy,
-        ph: Math.random() * Math.PI * 2,
-        fq: 0.22 + Math.random() * 0.35,
-        amp: 0.004 + Math.random() * 0.009,
-        base: 1.1 + Math.random() * 1.1,
-        flash: 0,
-        x: 0, y: 0
-      });
-    }
-    // sparse topology: each node links to its 2-3 nearest neighbours
-    edges = []; adj = nodes.map(function(){ return []; });
-    var seen = {};
-    nodes.forEach(function(nd, i){
-      var d = nodes.map(function(o, j){
-        return { j: j, d: Math.hypot(o.ax - nd.ax, o.ay - nd.ay) };
-      }).sort(function(a, b){ return a.d - b.d; });
-      var k = 2 + (i % 2);
-      for (var m = 1; m <= k && m < d.length; m++){
-        var j = d[m].j, key = Math.min(i, j) + ':' + Math.max(i, j);
-        if (seen[key]) continue;
-        seen[key] = 1;
-        edges.push([i, j]);
-        adj[i].push(j); adj[j].push(i);
-      }
-    });
-    var mn = document.getElementById('meta-n'), mk = document.getElementById('meta-k');
-    if (mn) mn.textContent = nodes.length;
-    if (mk) mk.textContent = edges.length;
-  }
-
-  function resize(){
-    var rect = canvas.getBoundingClientRect();
-    if (!rect.width || !rect.height) return;
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.round(rect.width * dpr);
-    canvas.height = Math.round(rect.height * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    W = rect.width; H = rect.height;
-  }
-
-  function seed(){
-    if (!nodes.length) return;
-    var i = (Math.random() * nodes.length) | 0;
-    nodes[i].flash = 1;
-    adj[i].forEach(function(j){
-      if (pulses.length < 46) pulses.push({ a: i, b: j, t: 0, gen: 0 });
-    });
-  }
-
-  function step(dt){
-    var time = performance.now() / 1000;
-    var pad = Math.min(W, H) * 0.08;
-
-    // node positions
-    for (var i = 0; i < nodes.length; i++){
-      var nd = nodes[i];
-      nd.x = pad + (nd.ax + Math.sin(time * nd.fq + nd.ph) * nd.amp) * (W - 2 * pad);
-      nd.y = pad + (nd.ay + Math.cos(time * nd.fq * 0.83 + nd.ph) * nd.amp) * (H - 2 * pad);
-      nd.flash = Math.max(0, nd.flash - dt * 1.7);
-    }
-
-    // pulses
-    var next = [];
-    for (var p = 0; p < pulses.length; p++){
-      var pl = pulses[p];
-      var a = nodes[pl.a], b = nodes[pl.b];
-      var len = Math.hypot(b.x - a.x, b.y - a.y) || 1;
-      pl.t += dt * (170 / len);
-      if (pl.t >= 1){
-        b.flash = 1;
-        if (pl.gen < 3 && pulses.length + next.length < 46){
-          var nb = adj[pl.b];
-          for (var q = 0; q < nb.length; q++){
-            if (nb[q] === pl.a) continue;
-            if (Math.random() < 0.62) next.push({ a: pl.b, b: nb[q], t: 0, gen: pl.gen + 1 });
-          }
-        }
-      } else {
-        next.push(pl);
-      }
-    }
-    pulses = next;
-
-    seedTimer -= dt;
-    if (seedTimer <= 0 || pulses.length === 0){
-      seed();
-      seedTimer = 0.9 + Math.random() * 1.6;
-    }
-  }
-
-  function draw(){
-    ctx.clearRect(0, 0, W, H);
-
-    // edges — faint, like a technical diagram on paper
-    ctx.lineWidth = 0.7;
-    ctx.strokeStyle = 'rgba(20, 22, 26, 0.10)';
-    ctx.beginPath();
-    for (var e = 0; e < edges.length; e++){
-      var a = nodes[edges[e][0]], b = nodes[edges[e][1]];
-      ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
-    }
-    ctx.stroke();
-
-    // nodes
-    var t = performance.now() / 1000;
-    for (var i = 0; i < nodes.length; i++){
-      var nd = nodes[i];
-      var pulse = 0.5 + 0.5 * Math.sin(t * 1.5 + nd.ph);
-      var r = nd.base + pulse * 0.4 + nd.flash * 2.6;
-      ctx.beginPath();
-      ctx.arc(nd.x, nd.y, r, 0, Math.PI * 2);
-      if (nd.flash > 0.02){
-        ctx.fillStyle = 'rgba(36, 84, 255, ' + (0.65 + nd.flash * 0.35).toFixed(3) + ')';
-        ctx.shadowBlur = 6 * nd.flash;
-        ctx.shadowColor = 'rgba(36, 84, 255, 0.5)';
-      } else {
-        ctx.fillStyle = 'rgba(20, 22, 26, ' + (0.22 + pulse * 0.18).toFixed(3) + ')';
-        ctx.shadowBlur = 0;
-      }
-      ctx.fill();
-      ctx.shadowBlur = 0;
-    }
-
-    // travelling spikes
-    for (var p = 0; p < pulses.length; p++){
-      var pl = pulses[p], A = nodes[pl.a], B = nodes[pl.b];
-      var x = A.x + (B.x - A.x) * pl.t, y = A.y + (B.y - A.y) * pl.t;
-      // short comet tail
-      var tt = Math.max(0, pl.t - 0.16);
-      ctx.strokeStyle = 'rgba(36, 84, 255, 0.4)';
-      ctx.lineWidth = 1.3;
-      ctx.beginPath();
-      ctx.moveTo(A.x + (B.x - A.x) * tt, A.y + (B.y - A.y) * tt);
-      ctx.lineTo(x, y);
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.arc(x, y, 2, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(36, 84, 255, 0.9)';
-      ctx.shadowBlur = 5;
-      ctx.shadowColor = 'rgba(36, 84, 255, 0.6)';
-      ctx.fill();
-      ctx.shadowBlur = 0;
-    }
-  }
-
-  function loop(now){
-    raf = requestAnimationFrame(loop);
-    if (!last) last = now;
-    var dt = Math.min((now - last) / 1000, 0.05);
-    last = now;
-    step(dt);
-    draw();
-  }
-
-  function start(){
-    if (raf || !visible || document.hidden) return;
-    last = 0;
-    raf = requestAnimationFrame(loop);
-  }
-  function stop(){
-    if (raf){ cancelAnimationFrame(raf); raf = null; }
-  }
-
-  function init(){
-    resize();
-    build();
-    if (reduce){
-      // one static frame: topology stays readable, nothing moves
-      step(0.016); draw();
-      return;
-    }
-    start();
-  }
-
-  var rt = null;
-  window.addEventListener('resize', function(){
-    clearTimeout(rt);
-    rt = setTimeout(function(){
-      var before = nodes.length;
-      resize();
-      if (count() !== before) build();
-      if (reduce){ step(0.016); draw(); }
-    }, 200);
-  }, { passive:true });
-
-  document.addEventListener('visibilitychange', function(){
-    if (document.hidden) stop(); else if (!reduce) start();
-  });
-
-  if ('IntersectionObserver' in window){
-    new IntersectionObserver(function(entries){
-      visible = entries[0].isIntersecting;
-      if (!reduce){ visible ? start() : stop(); }
-    }, { threshold: 0 }).observe(canvas);
-  }
-
-  init();
-})();
-</script>
+<script src="main.js"></script>
 </body>
 </html>
