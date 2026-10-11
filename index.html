@@ -6,7 +6,7 @@
 <title>Q-NOC — koło naukowe, Wydział Fizyki UW</title>
 <meta name="description" content="Q-NOC (Quantum Neuromorphic Optical Computing) to koło naukowe na Wydziale Fizyki Uniwersytetu Warszawskiego. Badamy obliczenia neuromorficzne, reservoir computing i sieci neuronowe oparte na świetle.">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%232454ff' d='M21 4a14 14 0 1 0 0 24 11 11 0 0 1 0-24Z'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="obrazy/qnoc-mark-small.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Q-NOC — Quantum Neuromorphic Optical Computing">
 <meta property="og:description" content="Koło naukowe na Wydziale Fizyki UW · Student research group at the Faculty of Physics, University of Warsaw.">
@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 <a class="skip" href="#main"><span lang="pl">Przejdź do treści</span><span lang="en">Skip to content</span></a>
@@ -32,7 +32,7 @@
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#start"><span class="dot" aria-hidden="true"></span>Q-NOC<span class="brand-long">Quantum Neuromorphic Optical Computing</span></a>
+    <a class="brand" href="#start"><img class="brand-mark" src="obrazy/qnoc-mark-small.png" width="185" height="160" alt="">Q-NOC<span class="brand-long">Quantum Neuromorphic Optical Computing</span></a>
     <button class="burger" id="burger" aria-label="Otwórz menu" aria-expanded="false" aria-controls="nav-links">
       <span></span><span></span><span></span>
     </button>
@@ -61,7 +61,7 @@
 
 <section class="hero">
   <div class="hero-bg"><canvas id="reservoir" aria-hidden="true"></canvas></div>
-  <div class="wrap">
+  <div class="wrap hero-grid">
     <div class="hero-copy">
       <p class="tag">Q-NOC</p>
       <h1 class="h1"><span class="line">Quantum Neuromorphic</span> <span class="line">Optical Computing</span></h1>
@@ -85,6 +85,7 @@
         <span>t →</span>
       </div>
     </div>
+    <img class="hero-emblem" src="obrazy/qnoc-mark.png" width="638" height="549" alt="" aria-hidden="true">
   </div>
   <p class="stage-meta" aria-hidden="true">
     <span lang="pl">rezerwuar · <b data-meta="n">—</b> węzłów · <b data-meta="k">—</b> połączeń · rzadka topologia rekurencyjna</span>
@@ -141,6 +142,70 @@
         </svg>
         <h3><span lang="pl">Obliczenia optyczne</span><span lang="en">Optical Computing</span></h3>
         <p><span lang="pl">Światło i polarytony jako nośnik obliczeń poza klasyczną elektroniką cyfrową.</span><span lang="en">Light and polaritons as a computing medium beyond conventional digital electronics.</span></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="band" id="community">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="tag"><span lang="pl">społeczność</span><span lang="en">community</span></p>
+      <h2><span lang="pl">Co razem robimy</span><span lang="en">What we do together</span></h2>
+      <p class="lede">
+        <span lang="pl">Q-NOC to nie tylko badania. To także ludzie, którzy regularnie się spotykają, uczą się od siebie i razem coś budują.</span>
+        <span lang="en">Q-NOC is more than research. It is also people who meet regularly, learn from one another and build things together.</span>
+      </p>
+    </div>
+
+    <div class="bay bay--3 reveal">
+      <article class="node-card">
+        <span class="when-tag"><span lang="pl">co tydzień</span><span lang="en">weekly</span></span>
+        <h3><span lang="pl">Spotkania tematyczne</span><span lang="en">Themed meetings</span></h3>
+        <p><span lang="pl">Co tydzień jedna osoba przygotowuje i prowadzi temat — około 45 minut, potem dyskusja.</span><span lang="en">Each week one person prepares and leads a topic — about 45 minutes, followed by discussion.</span></p>
+      </article>
+      <article class="node-card">
+        <span class="when-tag"><span lang="pl">termin wkrótce</span><span lang="en">date to come</span></span>
+        <h3><span lang="pl">Wykłady i spotkania z gośćmi</span><span lang="en">Talks and guest lectures</span></h3>
+        <p><span lang="pl">Zapraszamy osoby, które zajmują się tym, o czym czytamy. Dzień tygodnia ustalimy wspólnie.</span><span lang="en">We invite people who work on what we read about. The day of the week is still to be agreed.</span></p>
+      </article>
+      <article class="node-card">
+        <span class="when-tag"><span lang="pl">laboratorium</span><span lang="en">laboratory</span></span>
+        <h3><span lang="pl">Lab tour</span><span lang="en">Lab tour</span></h3>
+        <p><span lang="pl">Zwiedzanie Laboratorium Polarytonowego: zobacz z bliska układy, o których rozmawiamy.</span><span lang="en">A tour of the Polariton Laboratory: see up close the setups we talk about.</span></p>
+      </article>
+      <article class="node-card">
+        <span class="when-tag"><span lang="pl">razem</span><span lang="en">together</span></span>
+        <h3><span lang="pl">Wspólna nauka</span><span lang="en">Learning together</span></h3>
+        <p><span lang="pl">Uczymy się od siebie nawzajem — od podstaw fizyki półprzewodników po sieci neuronowe.</span><span lang="en">We learn from one another — from the basics of semiconductor physics to neural networks.</span></p>
+      </article>
+      <article class="node-card">
+        <span class="when-tag"><span lang="pl">po spotkaniach</span><span lang="en">after meetings</span></span>
+        <h3><span lang="pl">Pizza</span><span lang="en">Pizza</span></h3>
+        <p><span lang="pl">Po spotkaniu zostajemy na pizzę. Najlepsze pomysły i tak pojawiają się właśnie wtedy.</span><span lang="en">After the meeting we stay for pizza. That is when the best ideas turn up anyway.</span></p>
+      </article>
+      <article class="node-card">
+        <span class="when-tag"><span lang="pl">projekty</span><span lang="en">projects</span></span>
+        <h3><span lang="pl">Mini projekty z półprzewodnikami</span><span lang="en">Semiconductor mini-projects</span></h3>
+        <p><span lang="pl">Małe projekty inżynierskie, które realnie pomagają w codziennej pracy laboratoryjnej.</span><span lang="en">Small engineering projects that are of real use in day-to-day lab work.</span></p>
+      </article>
+      <article class="node-card">
+        <span class="when-tag"><span lang="pl">26 listopada</span><span lang="en">26 November</span></span>
+        <h3><span lang="pl">Konferencja dla Google</span><span lang="en">Conference for Google</span></h3>
+        <p><span lang="pl">Najbliższe duże wydarzenie w naszym kalendarzu.</span><span lang="en">The next big event in our calendar.</span></p>
+      </article>
+      <article class="node-card">
+        <span class="when-tag"><span lang="pl">wydarzenia</span><span lang="en">events</span></span>
+        <h3><span lang="pl">Targi kół naukowych</span><span lang="en">Student societies fair</span></h3>
+        <p><span lang="pl">Pokazujemy, czym się zajmujemy, i szukamy nowych osób do zespołu.</span><span lang="en">We show what we do and look for new people to join the team.</span></p>
+      </article>
+      <article class="node-card">
+        <span class="when-tag"><span lang="pl">grant</span><span lang="en">grant</span></span>
+        <h3>Studenckie koła naukowe tworzą innowacje</h3>
+        <p><span lang="pl">Chcemy wystartować w konkursie Ministerstwa Nauki i Szkolnictwa Wyższego — do 70 tys. zł na projekt badawczy koła.</span><span lang="en">We plan to apply to this Ministry of Science and Higher Education competition — up to PLN 70,000 for a student society research project.</span></p>
+        <p><a class="link-mono" href="https://pl.linkedin.com/posts/mnisw_masz-pomys%C5%82-na-projekt-badawczy-rozwijasz-activity-7502998228565643264-X1rF" target="_blank" rel="noopener"><span lang="pl">ogłoszenie</span><span lang="en">announcement</span> ↗</a></p>
       </article>
     </div>
   </div>
@@ -472,10 +537,6 @@
 
       <dl class="facts">
         <div>
-          <dt><span lang="pl">Kierownictwo</span><span lang="en">Led by</span></dt>
-          <dd>prof. dr hab. Barbara Piętka<br>dr hab. Jacek Szczytko, prof. UW</dd>
-        </div>
-        <div>
           <dt><span lang="pl">Jednostka</span><span lang="en">Unit</span></dt>
           <dd>
             <span lang="pl">Zakład Fizyki Ciała Stałego<br>Instytut Fizyki Doświadczalnej<br>Wydział Fizyki, Uniwersytet Warszawski</span>
@@ -666,8 +727,8 @@
       <article class="person">
         <div class="avatar" aria-hidden="true">MW</div>
         <h3>Mateusz Wawrzyniak</h3>
-        <p class="role"><span lang="pl">Bioinformatyka</span><span lang="en">Bioinformatics</span></p>
-        <p class="int"><span lang="pl">Wydział Matematyki, Informatyki i Mechaniki UW</span><span lang="en">Faculty of Mathematics, Informatics and Mechanics, UW</span></p>
+        <p class="role"><span lang="pl">studia magisterskie &middot; II rok</span><span lang="en">MSc student &middot; 2nd year</span></p>
+        <p class="int"><span lang="pl">Bioinformatyka &middot; Wydział Matematyki, Informatyki i Mechaniki UW</span><span lang="en">Bioinformatics &middot; Faculty of Mathematics, Informatics and Mechanics, UW</span></p>
         <div class="socials">
           <a href="https://www.facebook.com/mateusz.wawrzyniak.940" target="_blank" rel="noopener" aria-label="Mateusz Wawrzyniak — Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.5V21h3Z"/></svg></a>
         </div>
@@ -803,7 +864,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="brand-block">
-        <a class="brand" href="#start"><span class="dot" aria-hidden="true"></span>Q-NOC</a>
+        <a class="brand" href="#start"><img class="brand-mark" src="obrazy/qnoc-mark-small.png" width="185" height="160" alt="">Q-NOC</a>
         <p class="tagline">
           <span lang="pl">Quantum Neuromorphic Optical Computing — koło naukowe na Wydziale Fizyki Uniwersytetu Warszawskiego.</span>
           <span lang="en">Quantum Neuromorphic Optical Computing — student research group at the Faculty of Physics, University of Warsaw.</span>
@@ -834,6 +895,6 @@
   </div>
 </footer>
 
-<script src="main.js"></script>
+<script src="main.js?v=5"></script>
 </body>
 </html>
