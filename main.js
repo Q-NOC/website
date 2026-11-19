@@ -21,7 +21,7 @@
       formIdle: 'Odpowiemy mailowo.',
       formSending: 'Wysyłanie…',
       formOk: 'Dziękujemy — zgłoszenie zostało wysłane.',
-      formErr: 'Coś poszło nie tak — napisz bezpośrednio na q-noc@fuw.edu.pl.',
+      formErr: 'Coś poszło nie tak — napisz bezpośrednio na qnoc@uw.edu.pl.',
       node: 'Węzeł rezerwuaru ',
       gStart: 'Uruchom rezerwuar', gRestart: 'Zacznij od nowa', gAgain: 'Uruchom ponownie',
       hudIdle: ['spoczynek', 'rezerwuar czeka'],
@@ -42,7 +42,7 @@
       formIdle: "We'll get back to you by email.",
       formSending: 'Sending…',
       formOk: 'Thanks — your application was sent.',
-      formErr: 'Something went wrong — please email q-noc@fuw.edu.pl directly instead.',
+      formErr: 'Something went wrong — please email qnoc@uw.edu.pl directly instead.',
       node: 'Reservoir node ',
       gStart: 'Run the reservoir', gRestart: 'Restart', gAgain: 'Run it again',
       hudIdle: ['idle', 'reservoir at rest'],
@@ -200,14 +200,27 @@
     var btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
     setNote('sending');
-    fetch('https://formsubmit.co/ajax/alaskowski3.14@gmail.com', {
+    // FormSubmit can be slow or hang; give it 20 s, then fall back to a normal
+    // (non-AJAX) POST so the visitor lands on FormSubmit's own page, which also
+    // handles the one-time activation step and any captcha.
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function(){ if (ctrl) ctrl.abort(); }, 20000);
+    fetch('https://formsubmit.co/ajax/qnoc@uw.edu.pl', {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
-      body: new FormData(form)
+      body: new FormData(form),
+      signal: ctrl ? ctrl.signal : undefined
     }).then(function(r){ if (!r.ok) throw new Error(); return r.json(); })
-      .then(function(){ setNote('ok'); form.reset(); })
-      .catch(function(){ setNote('error'); })
-      .finally(function(){ btn.disabled = false; });
+      .then(function(res){
+        // FormSubmit answers HTTP 200 with success "false" e.g. before activation
+        if (!res || String(res.success) !== 'true') throw new Error(res && res.message);
+        setNote('ok'); form.reset();
+      })
+      .catch(function(){
+        if (location.protocol === 'file:') { setNote('error'); return; }
+        form.submit();
+      })
+      .finally(function(){ clearTimeout(timer); btn.disabled = false; });
   });
 
   /* ============================================================
