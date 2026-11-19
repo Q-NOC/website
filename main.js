@@ -200,14 +200,27 @@
     var btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
     setNote('sending');
+    // FormSubmit can be slow or hang; give it 20 s, then fall back to a normal
+    // (non-AJAX) POST so the visitor lands on FormSubmit's own page, which also
+    // handles the one-time activation step and any captcha.
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function(){ if (ctrl) ctrl.abort(); }, 20000);
     fetch('https://formsubmit.co/ajax/qnoc@uw.edu.pl', {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
-      body: new FormData(form)
+      body: new FormData(form),
+      signal: ctrl ? ctrl.signal : undefined
     }).then(function(r){ if (!r.ok) throw new Error(); return r.json(); })
-      .then(function(){ setNote('ok'); form.reset(); })
-      .catch(function(){ setNote('error'); })
-      .finally(function(){ btn.disabled = false; });
+      .then(function(res){
+        // FormSubmit answers HTTP 200 with success "false" e.g. before activation
+        if (!res || String(res.success) !== 'true') throw new Error(res && res.message);
+        setNote('ok'); form.reset();
+      })
+      .catch(function(){
+        if (location.protocol === 'file:') { setNote('error'); return; }
+        form.submit();
+      })
+      .finally(function(){ clearTimeout(timer); btn.disabled = false; });
   });
 
   /* ============================================================
