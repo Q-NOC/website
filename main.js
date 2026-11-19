@@ -21,7 +21,7 @@
       formIdle: 'Odpowiemy mailowo.',
       formSending: 'Wysyłanie…',
       formOk: 'Dziękujemy — zgłoszenie zostało wysłane.',
-      formErr: 'Coś poszło nie tak — napisz bezpośrednio na q-noc@fuw.edu.pl.',
+      formErr: 'Coś poszło nie tak — napisz bezpośrednio na qnoc@uw.edu.pl.',
       node: 'Węzeł rezerwuaru ',
       gStart: 'Uruchom rezerwuar', gRestart: 'Zacznij od nowa', gAgain: 'Uruchom ponownie',
       hudIdle: ['spoczynek', 'rezerwuar czeka'],
@@ -42,7 +42,7 @@
       formIdle: "We'll get back to you by email.",
       formSending: 'Sending…',
       formOk: 'Thanks — your application was sent.',
-      formErr: 'Something went wrong — please email q-noc@fuw.edu.pl directly instead.',
+      formErr: 'Something went wrong — please email qnoc@uw.edu.pl directly instead.',
       node: 'Reservoir node ',
       gStart: 'Run the reservoir', gRestart: 'Restart', gAgain: 'Run it again',
       hudIdle: ['idle', 'reservoir at rest'],
@@ -200,7 +200,7 @@
     var btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
     setNote('sending');
-    fetch('https://formsubmit.co/ajax/alaskowski3.14@gmail.com', {
+    fetch('https://formsubmit.co/ajax/qnoc@uw.edu.pl', {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
       body: new FormData(form)
